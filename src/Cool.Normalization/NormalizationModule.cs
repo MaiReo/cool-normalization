@@ -40,8 +40,6 @@ namespace Cool.Normalization
                     .IsDefault()
                     .LifestyleTransient()
                     );
-                //Donno why nothing happend.
-                //Configuration.ReplaceService<IAbpActionResultWrapperFactory, normalizationActionResultWrapperFactory>( DependencyLifeStyle.Transient );
             }
             IocManager.RegisterAssemblyByConvention( typeof( NormalizationModule ).GetAssembly() );
         }

@@ -11,7 +11,7 @@ using Xunit;
 
 namespace Cool.Normalization.Tests.Filters
 {
-    public class NormalizationExceptionFilter_Tests : MicroServicesnormalizationTestBase
+    public class NormalizationExceptionFilter_Tests : NormalizationTestBase
     {
         [Fact]
         public void OnException_WrapOnError_False_Tests()

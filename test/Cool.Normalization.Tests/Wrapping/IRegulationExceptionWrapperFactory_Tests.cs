@@ -10,7 +10,7 @@ using Xunit;
 
 namespace Cool.Normalization.Tests
 {
-    public class InormalizationExceptionWrapperFactory_Tests : MicroServicesnormalizationTestBase
+    public class InormalizationExceptionWrapperFactory_Tests : NormalizationTestBase
     {
         public readonly INormalizationExceptionWrapperFactory _normalizationExceptionWrapperFactory;
         public InormalizationExceptionWrapperFactory_Tests()

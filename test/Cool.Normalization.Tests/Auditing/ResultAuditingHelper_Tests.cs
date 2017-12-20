@@ -7,7 +7,7 @@ using Xunit;
 
 namespace Cool.Normalization.Tests
 {
-    public class ResultAuditingHelper_Tests: MicroServicesnormalizationTestBase
+    public class ResultAuditingHelper_Tests: NormalizationTestBase
     {
         private readonly IResultAuditingHelper _resultAuditingHelper;
         public ResultAuditingHelper_Tests()

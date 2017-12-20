@@ -12,7 +12,7 @@ using Xunit;
 
 namespace Cool.Normalization.Tests
 {
-    public class IAbpActionResultWrapperFactory_Tests : MicroServicesnormalizationTestBase
+    public class IAbpActionResultWrapperFactory_Tests : NormalizationTestBase
     {
         private readonly IAbpActionResultWrapperFactory _abpActionResultWrapperFactory;
 

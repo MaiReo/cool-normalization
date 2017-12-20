@@ -16,7 +16,7 @@ using Xunit;
 
 namespace Cool.Normalization.Tests
 {
-    public class normalizationJsonActionResultWrapper_Tests : MicroServicesnormalizationTestBase
+    public class normalizationJsonActionResultWrapper_Tests : NormalizationTestBase
     {
         private readonly IResultAuditingHelper _resultAuditingHelper;
         private readonly IRequestIdAccessor _requestIdAccessor;

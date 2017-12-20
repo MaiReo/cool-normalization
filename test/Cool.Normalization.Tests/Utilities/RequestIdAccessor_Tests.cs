@@ -11,7 +11,7 @@ using Xunit;
 
 namespace Cool.Normalization.Tests
 {
-    public class RequestIdAccessor_Tests : MicroServicesnormalizationTestBase
+    public class RequestIdAccessor_Tests : NormalizationTestBase
     {
 
         private readonly IRequestIdAccessor _requestIdAccessor;

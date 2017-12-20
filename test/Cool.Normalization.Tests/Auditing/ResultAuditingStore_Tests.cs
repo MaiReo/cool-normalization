@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Cool.Normalization.Tests
 {
-    public class ResultAuditingStore_Tests : MicroServicesnormalizationTestBase
+    public class ResultAuditingStore_Tests : NormalizationTestBase
     {
         private readonly IResultAuditingStore _resultAuditingStore;
         public ResultAuditingStore_Tests()

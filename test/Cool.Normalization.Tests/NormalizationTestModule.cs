@@ -15,7 +15,7 @@ namespace Cool.Normalization.Tests
         typeof( NormalizationModule ),
         typeof( Abp.TestBase.AbpTestBaseModule )
         )]
-    public class MicroServicesnormalizationTestModule : AbpModule
+    public class NormalizationTestModule : AbpModule
     {
         public override void PreInitialize()
         {
@@ -37,7 +37,7 @@ namespace Cool.Normalization.Tests
 
         public override void Initialize()
         {
-            IocManager.RegisterAssemblyByConvention( typeof( MicroServicesnormalizationTestModule ).GetAssembly() );
+            IocManager.RegisterAssemblyByConvention( typeof( NormalizationTestModule ).GetAssembly() );
         }
         private void SetupInMemoryDb()
         {

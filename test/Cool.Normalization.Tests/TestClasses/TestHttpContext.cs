@@ -60,7 +60,7 @@ namespace Cool.Normalization.Tests
             var response = new TestHttpResponse();
             Current = new TestHttpContext( request, response );
         }
-        internal static HttpContext Current { get; set; }
+        public static HttpContext Current { get; set; }
     }
 
 

@@ -15,7 +15,7 @@ using Xunit;
 
 namespace Cool.Normalization.Tests
 {
-    public class ResultCodeGenerator_Tests : MicroServicesnormalizationTestBase
+    public class ResultCodeGenerator_Tests : NormalizationTestBase
     {
 
         private readonly IResultCodeGenerator _resultCodeGenerator;

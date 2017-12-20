@@ -10,7 +10,7 @@ using Xunit;
 
 namespace Cool.Normalization.Tests
 {
-    public class ErrorMessageGenerator_Tests : MicroServicesnormalizationTestBase
+    public class ErrorMessageGenerator_Tests : NormalizationTestBase
     {
 
         private readonly IErrorMessageGenerator _errorMessageGenerator;

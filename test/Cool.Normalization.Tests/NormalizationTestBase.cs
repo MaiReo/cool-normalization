@@ -2,9 +2,9 @@
 
 namespace Cool.Normalization.Tests
 {
-    public abstract class MicroServicesnormalizationTestBase : AbpIntegratedTestBase<MicroServicesnormalizationTestModule>
+    public abstract class NormalizationTestBase : AbpIntegratedTestBase<NormalizationTestModule>
     {
-        public MicroServicesnormalizationTestBase()
+        public NormalizationTestBase()
         {
             
         }
