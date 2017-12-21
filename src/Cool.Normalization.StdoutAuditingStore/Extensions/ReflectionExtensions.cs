@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace System.Reflection
@@ -15,7 +16,7 @@ namespace System.Reflection
         /// <param name="method"></param>
         /// <returns></returns>
         public static MethodBase
-            GetRealMethodFromAsyncMethodOrSelf(this MethodBase method)
+            GetRealMethodFromAsyncMethodOrSelf( this MethodBase method )
         {
             if (method == null)
             {
@@ -31,13 +32,17 @@ namespace System.Reflection
             try
             {
                 var matchingMethods =
-                from methodInfo in originalType.GetMethods()
+                from methodInfo in originalType
+                .GetMethods( BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance | BindingFlags.FlattenHierarchy )
                 let attr = methodInfo.GetCustomAttribute<AsyncStateMachineAttribute>()
                 where attr != null && attr.StateMachineType == generatedType
                 select methodInfo;
                 return matchingMethods.Single();
             }
             catch
+            {
+            }
+            finally
             {
             }
             return method;

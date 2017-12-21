@@ -51,9 +51,9 @@ namespace Cool.Normalization.Tests
             var message = _logger.GetLastMessage();
             var correctMessage = $"{const_request_id}|" +
                 $"{auditInfo.ExecutionTime.ToString("yyyy-MM-dd-HH:mm:ssz")}|" +
-                $"Svc|Me|300|NULL|NULL|[::1]|NULL|NULL|NULL|NULL|NULL|NULL";
+                $"Svc|Me|300|NULL|NULL|[::1]|NULL|NULL|NULL|NULL|NULL|NULL|NULL";
             message.ShouldBe(correctMessage);
-            message.Split("|").Length.ShouldBe(14);
+            message.Split("|").Length.ShouldBe(15);
         }
 
         [Fact]
@@ -82,8 +82,8 @@ namespace Cool.Normalization.Tests
             var message = _logger.GetLastMessage();
             var correctMessageStart = $"{const_request_id}|" +
                 $"{auditInfo.ExecutionTime.ToString("yyyy-MM-dd-HH:mm:ssz")}|" +
-                $"Svc|Me|300|NULL|NULL|[::1]|EEEERROR|{typeof(StdoutAuditingStore_Tests).FullName}|{nameof(SaveAsync_HasException_Test)}|NULL|";
-            message.Split("|").Length.ShouldBe(14);
+                $"Svc|Me|300|NULL|NULL|[::1]|Exception|EEEERROR|{typeof(StdoutAuditingStore_Tests).FullName}|{nameof(SaveAsync_HasException_Test)}|NULL|";
+            message.Split("|").Length.ShouldBe(15);
             message.ShouldStartWith(correctMessageStart);
             message.Length.ShouldBeGreaterThan(correctMessageStart.Length);
 
@@ -115,8 +115,8 @@ namespace Cool.Normalization.Tests
             var message = _logger.GetLastMessage();
             var correctMessageStart = $"{const_request_id}|" +
                 $"{auditInfo.ExecutionTime.ToString("yyyy-MM-dd-HH:mm:ssz")}|" +
-                $"Svc|Me|300|NULL|NULL|[::1]|EEEERROR|{typeof(StdoutAuditingStore_Tests).FullName}|{nameof(Save_HasException_Test)}|NULL|";
-            message.Split("|").Length.ShouldBe(14);
+                $"Svc|Me|300|NULL|NULL|[::1]|Exception|EEEERROR|{typeof(StdoutAuditingStore_Tests).FullName}|{nameof(Save_HasException_Test)}|NULL|";
+            message.Split("|").Length.ShouldBe(15);
             message.ShouldStartWith(correctMessageStart);
             message.Length.ShouldBeGreaterThan(correctMessageStart.Length);
 

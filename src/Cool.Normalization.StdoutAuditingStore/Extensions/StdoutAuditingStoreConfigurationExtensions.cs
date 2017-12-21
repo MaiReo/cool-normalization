@@ -3,9 +3,9 @@ using Cool.Normalization.Configuration;
 
 namespace Cool.Normalization
 {
-    public static class StdoutAuditLogConfigurationExtensions
+    public static class StdoutAuditingStoreConfigurationExtensions
     {
-        public static IStdoutAuditStoreConfiguration StdoutAuditLog( this IModuleConfigurations module )
+        public static IStdoutAuditStoreConfiguration StdoutAuditingStore( this IModuleConfigurations module )
             => module.AbpConfiguration.Get<IStdoutAuditStoreConfiguration>();
     }
 }

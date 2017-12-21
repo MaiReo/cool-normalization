@@ -15,7 +15,7 @@ namespace Cool.Normalization
         }
         public override void Initialize()
         {
-            var moduleConfiguration = Configuration.Modules.StdoutAuditLog();
+            var moduleConfiguration = Configuration.Modules.StdoutAuditingStore();
             if (moduleConfiguration.UseStdoutAuditStore)
             {
                 // An ugly replacement

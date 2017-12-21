@@ -12,7 +12,7 @@ namespace Cool.Normalization
 {
     public class StdoutAuditingStore : IAuditingStore
     {
-        public const string NULL = nameof(NULL);
+        public const string NULL = nameof( NULL );
 
         private readonly IRequestIdAccessor _requestIdAccessor;
         private readonly ILogger _logger;
@@ -21,84 +21,98 @@ namespace Cool.Normalization
         public StdoutAuditingStore(
             IRequestIdAccessor requestIdAccessor,
             IStdoutAuditStoreConfiguration configuration,
-            ILogger logger)
+            ILogger logger )
         {
             this._requestIdAccessor = requestIdAccessor;
             this._logger = logger;
             this._configuration = configuration;
         }
 
-        public Task SaveAsync(AuditInfo auditInfo)
+        public Task SaveAsync( AuditInfo auditInfo )
         {
             var stringBuilder = new StringBuilder();
             stringBuilder
-               .Append(_requestIdAccessor.RequestId ?? NULL)
-               .Append(_configuration.LogSeparator)
-               .Append(auditInfo.ExecutionTime.ToString("yyyy-MM-dd-HH:mm:ssz"))
-               .Append(_configuration.LogSeparator)
-               .Append(auditInfo.ServiceName)
-               .Append(_configuration.LogSeparator)
-               .Append(auditInfo.MethodName)
-               .Append(_configuration.LogSeparator)
-               .Append(auditInfo.ExecutionDuration)
-               .Append(_configuration.LogSeparator)
-               .Append(auditInfo?.Parameters
-                ?.Replace("\r\n", _configuration.LineReplacement)
-                ?.Replace("\r", _configuration.LineReplacement)
-                ?.Replace("\n", _configuration.LineReplacement)
-                ?? NULL)
-               .Append(_configuration.LogSeparator)
-               .Append(auditInfo.UserId?.ToString() ?? NULL)
-               .Append(_configuration.LogSeparator)
-               .Append(auditInfo.ClientIpAddress ?? NULL)
-               .Append(_configuration.LogSeparator)
-               .Append(auditInfo.Exception?.Message ?? NULL)
-               .Append(_configuration.LogSeparator);
+               .Append( _requestIdAccessor.RequestId ?? NULL )
+               .Append( _configuration.LogSeparator )
+               .Append( auditInfo.ExecutionTime.ToString( "yyyy-MM-dd-HH:mm:ssz" ) )
+               .Append( _configuration.LogSeparator )
+               .Append( auditInfo.ServiceName )
+               .Append( _configuration.LogSeparator )
+               .Append( auditInfo.MethodName )
+               .Append( _configuration.LogSeparator )
+               .Append( auditInfo.ExecutionDuration )
+               .Append( _configuration.LogSeparator )
+               .Append( auditInfo?.Parameters
+                ?.Replace( "\r\n", _configuration.LineReplacement )
+                ?.Replace( "\r", _configuration.LineReplacement )
+                ?.Replace( "\n", _configuration.LineReplacement )
+                ?? NULL )
+               .Append( _configuration.LogSeparator )
+               .Append( auditInfo.UserId?.ToString() ?? NULL )
+               .Append( _configuration.LogSeparator )
+               .Append( auditInfo.ClientIpAddress ?? NULL )
+               .Append( _configuration.LogSeparator );
 
-            if (auditInfo.Exception != null)
+            if (auditInfo.Exception == null)
             {
-                var stackTrace = new StackTrace(auditInfo.Exception);
-                var stackFrame = stackTrace.GetFrame(stackTrace.FrameCount - 1);
-                if (stackFrame.HasMethod())
-                {
-                    var method = stackFrame.GetMethod()
-                        .GetRealMethodFromAsyncMethodOrSelf();
-
-                    stringBuilder
-                    .Append(method?.DeclaringType?.FullName ?? NULL)
-                    .Append(_configuration.LogSeparator)
-                    .Append(method?.Name ?? NULL)
-                    .Append(_configuration.LogSeparator);
-                    if (method?.IsGenericMethod == true)
-                    {
-                        stringBuilder.Append(string.Join(",",
-                            method
-                            .GetGenericArguments()
-                            .Select(t => t.FullName)));
-                    }
-                    else
-                    {
-                        stringBuilder.Append(NULL);
-                    }
-
-                }
-                else
-                {
-                    stringBuilder.Append(string.Join(_configuration.LogSeparator, Enumerable.Repeat(NULL, 3)));
-                }
-                stringBuilder
-                    .Append(_configuration.LogSeparator)
-                    .Append(stackFrame.GetFileName() ?? NULL)
-                    .Append(_configuration.LogSeparator)
-                    .Append(stackFrame.GetFileLineNumber())
-                    .Append(",")
-                    .Append(stackFrame.GetFileColumnNumber());
+                stringBuilder.Append( string.Join( _configuration.LogSeparator, Enumerable.Repeat( NULL, 7 ) ) );
             }
             else
             {
-                stringBuilder.Append(string.Join(_configuration.LogSeparator, Enumerable.Repeat(NULL, 5)));
+                var exceptionType = auditInfo.Exception.GetType();
+                stringBuilder
+                 .Append( exceptionType.Name )
+                 .Append( _configuration.LogSeparator )
+                 .Append( auditInfo.Exception.Message ?? NULL )
+                 .Append( _configuration.LogSeparator );
+
+                //skip stack tracing
+                if (auditInfo.Exception is NormalizationException)
+                {
+                    stringBuilder.Append( string.Join( _configuration.LogSeparator, Enumerable.Repeat( NULL, 3 ) ) );
+                }
+                else
+                {
+                    var stackTrace = new StackTrace( auditInfo.Exception );
+                    var stackFrame = stackTrace.GetFrame( stackTrace.FrameCount - 1 );
+                    if (stackFrame.HasMethod())
+                    {
+                        var method = stackFrame.GetMethod()
+                            .GetRealMethodFromAsyncMethodOrSelf();
+
+                        stringBuilder
+                        .Append( method?.DeclaringType?.FullName ?? NULL )
+                        .Append( _configuration.LogSeparator )
+                        .Append( method?.Name ?? NULL )
+                        .Append( _configuration.LogSeparator );
+                        if (method?.IsGenericMethod == true)
+                        {
+                            stringBuilder.Append( string.Join( ",",
+                                method
+                                .GetGenericArguments()
+                                .Select( t => t.FullName ) ) );
+                        }
+                        else
+                        {
+                            stringBuilder.Append( NULL );
+                        }
+                    }
+                    else
+                    {
+                        stringBuilder.Append( string.Join( _configuration.LogSeparator, Enumerable.Repeat( NULL, 3 ) ) );
+                    }
+                    stringBuilder
+                    .Append( _configuration.LogSeparator )
+                    .Append( stackFrame.GetFileName() ?? NULL )
+                    .Append( _configuration.LogSeparator )
+                    .Append( stackFrame.GetFileLineNumber() )
+                    .Append( "," )
+                    .Append( stackFrame.GetFileColumnNumber() );
+
+                }
             }
-            _logger.Info(stringBuilder.ToString());
+
+            _logger.Info( stringBuilder.ToString() );
             return Task.CompletedTask;
         }
     }
