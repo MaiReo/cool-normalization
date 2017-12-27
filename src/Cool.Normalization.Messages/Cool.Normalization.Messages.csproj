@@ -3,25 +3,21 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>Cool.Normalization.EntityFrameworkCore.snk</AssemblyOriginatorKeyFile>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.4</Version>
-    <AssemblyVersion>1.0.4.0</AssemblyVersion>
-    <FileVersion>1.0.4.0</FileVersion>
-    <Authors>MaiReo</Authors>
+    <AssemblyOriginatorKeyFile>Cool.Normalization.Messages.snk</AssemblyOriginatorKeyFile>
     <Company>HouseCool</Company>
+    <Authors>MaiReo</Authors>
     <Copyright>HouseCool</Copyright>
     <PackageIconUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/cool-icon.ico</PackageIconUrl>
     <PackageProjectUrl>https://github.com/MaiReo/cool-normalization</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/LICENSE</PackageLicenseUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.4</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Cool.Normalization\Cool.Normalization.csproj" />
+    <PackageReference Include="MaiReo.Messages.Abstractions.AbpIntegration" Version="1.0.2" />
+    <PackageReference Include="MaiReo.Messages.Publisher.AbpIntegration" Version="1.0.1" />
+    <PackageReference Include="MaiReo.Messages.Receiver.AbpIntegration" Version="1.0.2" />
   </ItemGroup>
 
 </Project>

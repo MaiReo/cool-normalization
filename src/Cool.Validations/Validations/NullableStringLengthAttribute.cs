@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Cool.Normalization
+namespace Cool.Validations
 {
     [AttributeUsage( AttributeTargets.Property, Inherited = false, AllowMultiple = false )]
     public class NullableStringLengthAttribute : StringLengthAttribute

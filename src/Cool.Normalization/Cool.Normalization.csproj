@@ -6,11 +6,14 @@
     <Company>HouseCool</Company>
     <Authors>MaiReo</Authors>
     <Copyright>HouseCool</Copyright>
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
-    <FileVersion>1.0.2.0</FileVersion>
+    <AssemblyVersion>1.0.4.0</AssemblyVersion>
+    <FileVersion>1.0.4.0</FileVersion>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Cool.Normalization.snk</AssemblyOriginatorKeyFile>
-    <Version>1.0.2</Version>
+    <Version>1.0.4</Version>
+    <PackageIconUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/cool-icon.ico</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/MaiReo/cool-normalization</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

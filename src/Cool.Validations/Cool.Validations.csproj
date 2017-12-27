@@ -2,26 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Authors>MaiReo</Authors>
     <Company>HouseCool</Company>
+    <Authors>MaiReo</Authors>
     <Copyright>HouseCool</Copyright>
-    <SignAssembly>true</SignAssembly>
-    <DelaySign>false</DelaySign>
-    <AssemblyOriginatorKeyFile>Cool.Normalization.snk</AssemblyOriginatorKeyFile>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <RootNamespace>Cool.Normalization</RootNamespace>
     <PackageIconUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/cool-icon.ico</PackageIconUrl>
     <PackageProjectUrl>https://github.com/MaiReo/cool-normalization</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/LICENSE</PackageLicenseUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Cool.Validations.snk</AssemblyOriginatorKeyFile>
     <Version>1.0.4</Version>
-    <AssemblyVersion>1.0.4.0</AssemblyVersion>
-    <FileVersion>1.0.4.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.1" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
   </ItemGroup>
 
