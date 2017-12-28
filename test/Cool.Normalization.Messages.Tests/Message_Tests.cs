@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Cool.Normalization.Messages.Tests.TestDatas;
+using MaiReo.Messages.Abstractions;
+using Shouldly;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
-using Shouldly;
-using Cool.Normalization.Messages.Tests.TestDatas;
-using MaiReo.Messages.Abstractions.Core;
-using System.Linq;
-using MaiReo.Messages.Abstractions;
 
 namespace Cool.Normalization.Messages.Tests
 {
@@ -69,12 +66,12 @@ namespace Cool.Normalization.Messages.Tests
             try
             {
                 handler = resolver.Resolve( LocalIocManager, typeof( TestMessage ) );
-                var expr = builder.Build( typeof( TestMessage ), messageJson );
+                var expr = builder.Build( typeof( TestMessage ), messageJson, message.DateTimeOffset );
                 var func = expr.Compile();
                 var task = func.Invoke( handler );
                 await task;
                 TestMessageHandler.Messages.ShouldNotBeEmpty();
-                var firstMessage = TestMessageHandler.Messages.First( x => x.RequestId == message.RequestId );
+                var firstMessage = TestMessageHandler.Messages[message.DateTimeOffset];
                 firstMessage.RequestId.ShouldBe( message.RequestId );
                 firstMessage.Int.ShouldBe( message.Int );
                 firstMessage.String.ShouldBe( message.String );

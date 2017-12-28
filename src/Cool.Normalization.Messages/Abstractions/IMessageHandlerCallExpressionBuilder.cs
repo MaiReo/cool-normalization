@@ -8,6 +8,6 @@ namespace Cool.Normalization.Messages
 {
     public interface IMessageHandlerCallExpressionBuilder
     {
-        Expression<Func<object, Task>> Build( Type messageType, string message );
+        Expression<Func<object, Task>> Build( Type messageType, string message, DateTimeOffset timestamp );
     }
 }

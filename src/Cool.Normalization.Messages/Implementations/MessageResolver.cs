@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Abp.Dependency;
+using MaiReo.Messages.Abstractions;
+using System;
 using System.Collections.Generic;
-using Abp.Dependency;
-using MaiReo.Messages.Abstractions.Core;
 using System.Linq;
 using System.Reflection;
-using MaiReo.Messages.Abstractions;
 
 namespace Cool.Normalization.Messages
 {

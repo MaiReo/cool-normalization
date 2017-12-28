@@ -1,7 +1,6 @@
-﻿using MaiReo.Messages.Abstractions.Core;
+﻿using MaiReo.Messages.Abstractions;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Cool.Normalization.Messages.Tests.TestDatas
@@ -10,12 +9,12 @@ namespace Cool.Normalization.Messages.Tests.TestDatas
     {
         static TestMessageHandler()
         {
-            Messages = new List<TestMessage>();
+            Messages = new Dictionary<DateTimeOffset, TestMessage>();
         }
-        public static List<TestMessage> Messages { get; private set; }
-        public Task HandleMessageAsync( TestMessage message )
+        public static Dictionary<DateTimeOffset, TestMessage> Messages { get; private set; }
+        public Task HandleMessageAsync( TestMessage message, DateTimeOffset timestamp )
         {
-            Messages.Add( message );
+            Messages.Add( timestamp, message );
             return Task.Run( () => message?.ToString() );
         }
     }

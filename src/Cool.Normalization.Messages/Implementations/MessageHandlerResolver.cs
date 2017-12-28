@@ -1,5 +1,5 @@
 ﻿using Abp.Dependency;
-using MaiReo.Messages.Abstractions.Core;
+using MaiReo.Messages.Abstractions;
 using System;
 
 namespace Cool.Normalization.Messages

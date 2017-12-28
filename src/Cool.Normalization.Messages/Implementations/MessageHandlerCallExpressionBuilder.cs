@@ -1,5 +1,4 @@
 ﻿using MaiReo.Messages.Abstractions;
-using MaiReo.Messages.Abstractions.Core;
 using Newtonsoft.Json;
 using System;
 using System.Linq.Expressions;
@@ -9,7 +8,7 @@ namespace Cool.Normalization.Messages
 {
     public class MessageHandlerCallExpressionBuilder : IMessageHandlerCallExpressionBuilder
     {
-        public Expression<Func<object, Task>> Build( Type messageType, string message )
+        public Expression<Func<object, Task>> Build( Type messageType, string message, DateTimeOffset timestamp )
         {
             var handlerType = typeof( IMessageHandler<> ).MakeGenericType( messageType );
             var objectParameter = Expression.Parameter( typeof( object ) );
@@ -21,10 +20,13 @@ namespace Cool.Normalization.Messages
                 new[] { messageType }, jsonExpr );
             var convertJsonToMessageTypeExpr = Expression.Convert( deserializeCall, messageType );
 
+            var timestampExpr = Expression.Constant( timestamp, typeof( DateTimeOffset ) );
+
             var bodyExpr = Expression.Call( handlerInstanceExpr,
                 nameof( IMessageHandler<DummyMessage>.HandleMessageAsync ),
                 Type.EmptyTypes,
-                convertJsonToMessageTypeExpr );
+                convertJsonToMessageTypeExpr,
+                timestampExpr);
             var lambdaExpr = Expression.Lambda<Func<object, Task>>( bodyExpr, objectParameter );
             return lambdaExpr;
         }

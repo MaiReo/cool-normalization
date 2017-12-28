@@ -1,7 +1,6 @@
 ﻿using Abp.Dependency;
 using Castle.MicroKernel.Registration;
-using MaiReo.Messages.Abstractions.Core;
-using System.Linq;
+using MaiReo.Messages.Abstractions;
 
 namespace Cool.Normalization.Messages
 {

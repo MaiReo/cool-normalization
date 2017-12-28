@@ -1,7 +1,6 @@
 ﻿using Abp.Dependency;
 using Castle.Core.Logging;
 using MaiReo.Messages.Abstractions;
-using MaiReo.Messages.Abstractions.Core;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -47,7 +46,7 @@ namespace Cool.Normalization.Messages
                         }
                         handlerInstance = MessageHandlerResolver.Resolve( iocResolver, messageType );
 
-                        var handlerCallExpression = MessageHandlerCallExpressionBuilder.Build( messageType, e.Message );
+                        var handlerCallExpression = MessageHandlerCallExpressionBuilder.Build( messageType, e.Message, e.Timestamp );
 
                         var @delegate = handlerCallExpression.Compile();
 
@@ -70,7 +69,7 @@ namespace Cool.Normalization.Messages
 
                         var log = MessageLogFormatter.Format( e, stopWatch.ElapsedMilliseconds, messageType, handlerInstanceType, exception );
                         Logger.Info( log );
-                        
+
                     }
 
                 } );

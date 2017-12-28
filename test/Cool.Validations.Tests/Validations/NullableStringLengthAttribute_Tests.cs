@@ -1,7 +1,8 @@
 ﻿using Shouldly;
 using Xunit;
+using Cool.Validations;
 
-namespace Cool.Normalization.Tests
+namespace Cool.Validations.Tests
 {
     public class NullableStringLengthAttribute_Tests
     {
