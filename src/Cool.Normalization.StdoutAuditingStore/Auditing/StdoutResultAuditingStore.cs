@@ -35,6 +35,8 @@ namespace Cool.Normalization
         {
             var stringBuilder = new StringBuilder();
             stringBuilder
+                .Append("AUDIT-OUT")
+                .Append( _configuration.LogSeparator )
                 .Append(normalizationResponse.RequestId ?? "NULL")
                 .Append(_configuration.LogSeparator)
                 .Append(normalizationResponse.Code ?? "NULL")

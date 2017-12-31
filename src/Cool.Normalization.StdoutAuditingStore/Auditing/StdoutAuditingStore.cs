@@ -32,6 +32,8 @@ namespace Cool.Normalization
         {
             var stringBuilder = new StringBuilder();
             stringBuilder
+               .Append( "AUDIT-IN" )
+               .Append( _configuration.LogSeparator )
                .Append( _requestIdAccessor.RequestId ?? NULL )
                .Append( _configuration.LogSeparator )
                .Append( auditInfo.ExecutionTime.ToString( "yyyy-MM-dd-HH:mm:ssz" ) )

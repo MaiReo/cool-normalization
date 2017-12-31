@@ -11,7 +11,7 @@ namespace Cool.Normalization.Messages
             Type handlerType = null,
             Exception exception = null )
         {
-            return $"MESSAGE-HANDLED|{messageType.FullName}|{handlerType?.FullName ?? "NULL"}|{elapsedMilliseconds}|{wrapper?.Topic}|{(wrapper?.Timestamp)?.ToString() ?? "NULL"}|{wrapper?.Message}|{exception?.Message ?? "NULL"}";
+            return $"MESSAGE-HANDLED^{messageType.FullName}^{handlerType?.FullName ?? "NULL"}^{elapsedMilliseconds}^{wrapper?.Topic}^{(wrapper?.Timestamp)?.ToString() ?? "NULL"}^{wrapper?.Message}^{exception?.Message ?? "NULL"}";
         }
     }
 }

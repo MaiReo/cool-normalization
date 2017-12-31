@@ -111,7 +111,7 @@ namespace Cool.Normalization.Messages.Tests
                 LocalIocManager.Release( handler );
                 var wrapper = new MessageWrapper( "TestCoolMessage", messageJson, message.DateTimeOffset );
                 var log = formatter.Format( wrapper, 1000, typeof( TestMessage ), handlerType );
-                log.ShouldBe( $"MESSAGE-HANDLED|Cool.Normalization.Messages.Tests.TestDatas.TestMessage|{handlerType.FullName}|1000|TestCoolMessage|{message.DateTimeOffset}|{messageJson}|NULL" );
+                log.ShouldBe( $"MESSAGE-HANDLED^Cool.Normalization.Messages.Tests.TestDatas.TestMessage^{handlerType.FullName}^1000^TestCoolMessage^{message.DateTimeOffset}^{messageJson}^NULL" );
             }
             finally
             {
