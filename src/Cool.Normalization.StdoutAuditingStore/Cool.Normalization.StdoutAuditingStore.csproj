@@ -6,9 +6,9 @@
     <Company>HouseCool</Company>
     <Authors>MaiReo</Authors>
     <Copyright>HouseCool</Copyright>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>Cool.Normalization.snk</AssemblyOriginatorKeyFile>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -5,7 +5,7 @@
     <Authors>MaiReo</Authors>
     <Company>HouseCool</Company>
     <Copyright>HouseCool</Copyright>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <DelaySign>false</DelaySign>
     <AssemblyOriginatorKeyFile>Cool.Normalization.snk</AssemblyOriginatorKeyFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -14,9 +14,7 @@
     <PackageIconUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/cool-icon.ico</PackageIconUrl>
     <PackageProjectUrl>https://github.com/MaiReo/cool-normalization</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/LICENSE</PackageLicenseUrl>
-    <Version>1.0.4</Version>
-    <AssemblyVersion>1.0.4.0</AssemblyVersion>
-    <FileVersion>1.0.4.0</FileVersion>
+    <Version>1.0.5</Version>
   </PropertyGroup>
 
   <ItemGroup>

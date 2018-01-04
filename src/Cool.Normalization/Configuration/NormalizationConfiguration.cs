@@ -8,7 +8,7 @@
         {
             this.UseWrapping = true;
             this.ResultAuditing = true;
-            this.RequestIdHeaderName = "Request-Id";
+            this.RequestIdHeaderName = "X-Cool-RequestId";
         }
         /// <summary>
         /// 使用规范包装输出结果

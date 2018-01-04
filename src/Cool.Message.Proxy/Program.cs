@@ -38,7 +38,10 @@ namespace Cool.Message.Proxy
                 return;
             }
 
-            var broker = _broker = new MessageBroker( configuration );
+            var broker = _broker = new MessageBroker( configuration )
+            {
+                Logger = new ConsoleMessageBrokerLogger()
+            };
 
             broker.Startup();
             await Task.Delay( -1, _cancellationTokenSource.Token );

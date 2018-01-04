@@ -56,7 +56,7 @@
             this.tb_xpub.Name = "tb_xpub";
             this.tb_xpub.Size = new System.Drawing.Size(100, 21);
             this.tb_xpub.TabIndex = 2;
-            this.tb_xpub.Text = "5555";
+            this.tb_xpub.Text = "8111";
             // 
             // label_xpub
             // 
@@ -83,7 +83,7 @@
             this.tb_xsub.Name = "tb_xsub";
             this.tb_xsub.Size = new System.Drawing.Size(100, 21);
             this.tb_xsub.TabIndex = 4;
-            this.tb_xsub.Text = "6666";
+            this.tb_xsub.Text = "8222";
             // 
             // label_addr
             // 

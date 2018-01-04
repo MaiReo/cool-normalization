@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>Cool.Normalization.Messages.snk</AssemblyOriginatorKeyFile>
     <Company>HouseCool</Company>
     <Authors>MaiReo</Authors>
@@ -11,9 +11,7 @@
     <PackageProjectUrl>https://github.com/MaiReo/cool-normalization</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/LICENSE</PackageLicenseUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.1.1</Version>
-    <AssemblyVersion>1.1.1.0</AssemblyVersion>
-    <FileVersion>1.1.1.0</FileVersion>
+    <Version>1.1.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
