@@ -32,9 +32,8 @@ namespace Cool.Normalization.Messages
                     iocResolver.Release( handler );
                 }
             }
-            var tmp = allMessages.ToLookup( m => m.GetCustomAttribute<MessageTopicAttribute>() )
-                .Where( l => l.Key != null && (!string.IsNullOrWhiteSpace( l.Key.TopicName )) )
-                .Select( l => new { l.Key.TopicName, MessageType = l.First() } );
+            var tmp = allMessages.ToLookup( m => m.GetCustomAttribute<MessageTopicAttribute>()?.TopicName ?? m.Name )
+                .Select( l => new { TopicName = l.Key, MessageType = l.First() } );
             var dic = new Dictionary<string, Type>();
             foreach (var item in tmp)
             {
