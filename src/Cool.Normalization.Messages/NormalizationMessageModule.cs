@@ -2,6 +2,7 @@
 using Abp.Modules;
 using MaiReo.Messages.Abstractions;
 using System.Net;
+using System;
 
 namespace Cool.Normalization.Messages
 {
@@ -19,28 +20,20 @@ namespace Cool.Normalization.Messages
         }
         public override void Initialize()
         {
-            //Prevent auto starting for pub/sub.
-            Configuration.Modules.MessagePublisher().AutoStart = false;
+            //Prevent auto starting for receiver.
             Configuration.Modules.MessageReceiver().AutoStart = false;
-            var messageConfig = Configuration.Modules.Messages();
-            AddMissingConfiguration( messageConfig );
+            AddMissingConfiguration( IocManager.Resolve<IMessageConfiguration>() );
         }
 
-        private void AddMissingConfiguration( IMessageConfiguration messageConfig )
+        private void AddMissingConfiguration( IMessageConfiguration messageConfiguration )
         {
-            messageConfig.Schema = messageConfig.Schema ?? "tcp";
-            messageConfig.ListenAddress =
-                messageConfig.ListenAddress
-                ?? IPAddress.IPv6Any;
-            messageConfig.ListenAddressForPubSub =
-                messageConfig.ListenAddressForPubSub
-                ?? "coolmessageproxy";
-            messageConfig.XPubPort = messageConfig.XPubPort == 0
-                ? 5555
-                : messageConfig.XPubPort;
-            messageConfig.XSubPort = messageConfig.XSubPort == 0
-                ? 6666
-                : messageConfig.XSubPort;
+            messageConfiguration.BrokerAddress = messageConfiguration.BrokerAddress
+                ?? MessageConfiguration.Default.BrokerAddress;
+            if (messageConfiguration.BrokerPort > 65535
+                || messageConfiguration.BrokerPort < 1)
+            {
+                messageConfiguration.BrokerPort =  MessageConfiguration.Default.BrokerPort;
+            }
         }
 
         public override void PostInitialize()

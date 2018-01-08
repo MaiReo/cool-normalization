@@ -27,7 +27,7 @@ namespace Cool.Normalization.Messages
             }
             foreach (var topic in messages.Keys)
             {
-                configuration.SubscribingMessageTopics.Add( topic );
+                configuration.Subscription.Add( topic );
             }
 
             configuration.MessageReceiving += ( sender, e ) =>
