@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net452</TargetFramework>
+    <RootNamespace>Cool.Normalization.Messages</RootNamespace>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Cool.Normalization.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <Authors>MaiReo</Authors>
+    <Company>HouseCool</Company>
+    <Description>兼容旧Main的消息包，只有发消息功能。Core项目安装此包，添加[DependsOn(typeof(Cool.Normalization.Messages.NormalizationMessageModule))]</Description>
+    <PackageReleaseNotes>兼容旧Main的消息包。</PackageReleaseNotes>
+    <Copyright>HouseCool</Copyright>
+    <PackageTags>cool,message,msg,nor</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Abp" Version="0.7.6" />
+    <PackageReference Include="MaiReo.Messages.Abstractions" Version="2.0.0" />
+    <PackageReference Include="MaiReo.Messages.Publisher" Version="2.1.0" />
+  </ItemGroup>
+  
+</Project>
