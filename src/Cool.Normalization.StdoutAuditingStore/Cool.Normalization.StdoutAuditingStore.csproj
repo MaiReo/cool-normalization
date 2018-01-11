@@ -3,12 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>Cool.Normalization.Messages.snk</AssemblyOriginatorKeyFile>
     <Company>HouseCool</Company>
     <Authors>MaiReo</Authors>
     <Copyright>HouseCool</Copyright>
-    <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>Cool.Normalization.snk</AssemblyOriginatorKeyFile>
-    <Version>1.0.6</Version>
+    <PackageIconUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/cool-icon.ico</PackageIconUrl>
+    <PackageProjectUrl>http://rd-server:8080/tfs/MicroserviceCollection/TestProject/_git/common.Normalization</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/LICENSE</PackageLicenseUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

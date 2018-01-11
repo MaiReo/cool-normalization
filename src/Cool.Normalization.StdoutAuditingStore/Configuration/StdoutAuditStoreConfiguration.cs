@@ -2,7 +2,7 @@
 {
     public class StdoutAuditStoreConfiguration : IStdoutAuditStoreConfiguration
     {
-        public const string DEFAULT_LOG_SEPARATOR = "|";
+        public const string DEFAULT_LOG_SEPARATOR = "^";
 
         public const string DEFAULT_LINE_REPLACEMENT = "/";
 

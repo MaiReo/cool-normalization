@@ -14,10 +14,7 @@ namespace Cool.Normalization.Messages
     public class NormalizationMessageModule : AbpModule
     {
         private IMessageReceiverWrapper _receiver;
-        public override void PreInitialize()
-        {
-            IocManager.AddConventionalRegistrar( new MessageHandlerRegistrar() );
-        }
+       
         public override void Initialize()
         {
             //Prevent auto starting for receiver.
@@ -39,6 +36,8 @@ namespace Cool.Normalization.Messages
         public override void PostInitialize()
         {
             var messageConfig = Configuration.Modules.Messages();
+            //TODO:及时更新kafka地址并打包发布
+            messageConfig.BrokerAddress = "test.baishijiaju.com";
 
             RegisterIfNot<IMessageResolver, MessageResolver>();
             RegisterIfNot<IMessageHandlerResolver, MessageHandlerResolver>();

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net452</TargetFramework>
     <RootNamespace>Cool.Normalization.Messages</RootNamespace>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>Cool.Normalization.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <Authors>MaiReo</Authors>
@@ -12,6 +12,7 @@
     <PackageReleaseNotes>兼容旧Main的消息包。</PackageReleaseNotes>
     <Copyright>HouseCool</Copyright>
     <PackageTags>cool,message,msg,nor</PackageTags>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

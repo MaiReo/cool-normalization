@@ -49,11 +49,11 @@ namespace Cool.Normalization.Tests
             };
             await auditingStore.SaveAsync(auditInfo);
             var message = _logger.GetLastMessage();
-            var correctMessage = $"AUDIT-IN|{const_request_id}|" +
-                $"{auditInfo.ExecutionTime.ToString("yyyy-MM-dd-HH:mm:ssz")}|" +
-                $"Svc|Me|300|NULL|NULL|[::1]|NULL|NULL|NULL|NULL|NULL|NULL|NULL";
+            var correctMessage = $"AUDIT-IN^{const_request_id}^" +
+                $"{auditInfo.ExecutionTime.ToString("yyyy-MM-dd-HH:mm:ssz")}^" +
+                $"Svc^Me^300^NULL^NULL^[::1]^NULL^NULL^NULL^NULL^NULL^NULL^NULL";
             message.ShouldBe(correctMessage);
-            message.Split("|").Length.ShouldBe(16);
+            message.Split("^").Length.ShouldBe(16);
         }
 
         [Fact]
@@ -80,10 +80,10 @@ namespace Cool.Normalization.Tests
             };
             await auditingStore.SaveAsync(auditInfo);
             var message = _logger.GetLastMessage();
-            var correctMessageStart = $"AUDIT-IN|{const_request_id}|" +
-                $"{auditInfo.ExecutionTime.ToString("yyyy-MM-dd-HH:mm:ssz")}|" +
-                $"Svc|Me|300|NULL|NULL|[::1]|Exception|EEEERROR|{typeof(StdoutAuditingStore_Tests).FullName}|{nameof(SaveAsync_HasException_Test)}|NULL|";
-            message.Split("|").Length.ShouldBe(16);
+            var correctMessageStart = $"AUDIT-IN^{const_request_id}^" +
+                $"{auditInfo.ExecutionTime.ToString("yyyy-MM-dd-HH:mm:ssz")}^" +
+                $"Svc^Me^300^NULL^NULL^[::1]^Exception^EEEERROR^{typeof(StdoutAuditingStore_Tests).FullName}^{nameof(SaveAsync_HasException_Test)}^NULL^";
+            message.Split("^").Length.ShouldBe(16);
             message.ShouldStartWith(correctMessageStart);
             message.Length.ShouldBeGreaterThan(correctMessageStart.Length);
 
@@ -113,10 +113,10 @@ namespace Cool.Normalization.Tests
             };
             auditingStore.Save(auditInfo);
             var message = _logger.GetLastMessage();
-            var correctMessageStart = $"AUDIT-IN|{const_request_id}|" +
-                $"{auditInfo.ExecutionTime.ToString("yyyy-MM-dd-HH:mm:ssz")}|" +
-                $"Svc|Me|300|NULL|NULL|[::1]|Exception|EEEERROR|{typeof(StdoutAuditingStore_Tests).FullName}|{nameof(Save_HasException_Test)}|NULL|";
-            message.Split("|").Length.ShouldBe(16);
+            var correctMessageStart = $"AUDIT-IN^{const_request_id}^" +
+                $"{auditInfo.ExecutionTime.ToString("yyyy-MM-dd-HH:mm:ssz")}^" +
+                $"Svc^Me^300^NULL^NULL^[::1]^Exception^EEEERROR^{typeof(StdoutAuditingStore_Tests).FullName}^{nameof(Save_HasException_Test)}^NULL^";
+            message.Split("^").Length.ShouldBe(16);
             message.ShouldStartWith(correctMessageStart);
             message.Length.ShouldBeGreaterThan(correctMessageStart.Length);
 
