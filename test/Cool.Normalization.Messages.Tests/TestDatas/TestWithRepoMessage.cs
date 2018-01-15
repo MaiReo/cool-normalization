@@ -5,8 +5,7 @@ using System.Text;
 
 namespace Cool.Normalization.Messages.Tests
 {
-    [MessageTopic( "TestCoolMessage" )]
-    public class TestMessage : IMessage
+    public class TestWithRepoMessage : IMessage
     {
         public string RequestId { get; set; }
 

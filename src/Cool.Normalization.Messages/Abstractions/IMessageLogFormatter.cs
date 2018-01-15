@@ -1,12 +1,15 @@
 ﻿using MaiReo.Messages.Abstractions;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Reflection;
 
 namespace Cool.Normalization.Messages
 {
     public interface IMessageLogFormatter
     {
-        string Format( IMessageWrapper wrapper, long elapsedMilliseconds, Type messageType, Type handlerType = null, Exception exception = null );
+        string Format(IMessageWrapper wrapper, 
+            long elapsedMilliseconds,
+            MethodInfo ifaceMethod = default( MethodInfo ),
+            MethodInfo handlerMethod = default( MethodInfo ),
+            Exception exception = default( Exception ));
     }
 }

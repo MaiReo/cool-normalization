@@ -17,15 +17,14 @@ namespace Cool.Normalization.Utilities
     internal class ResultCodeGenerator : IResultCodeGenerator, ISingletonDependency
     {
 
-        public string GetCode( ActionDescriptor actionDescriptor, Type controllerType )
-            => CombineCodes( GetCodes( actionDescriptor ) );
+        public string GetCode(ActionDescriptor actionDescriptor, Type controllerType)
+            => GetCodes( actionDescriptor ).CombineCodes();
 
-        public string GetCode( ExceptionContext exceptionContext, Type controllerType )
-            => CombineCodes(
-                GetCodes( exceptionContext, controllerType ) );
+        public string GetCode(ExceptionContext exceptionContext, Type controllerType)
+            => GetCodes( exceptionContext, controllerType ).CombineCodes();
 
-        private static IDictionary<CodePart, string> GetCodes( ExceptionContext exceptionContext,
-            Type controllerRealType )
+        private static IReadOnlyDictionary<CodePart, string> GetCodes(ExceptionContext exceptionContext,
+            Type controllerRealType)
         {
             var actionDescriptor = exceptionContext?.ActionDescriptor;
             var controllerAction = actionDescriptor?.AsControllerActionDescriptor();
@@ -36,54 +35,22 @@ namespace Cool.Normalization.Utilities
             {
                 return GetAbpValidationExceptionCodes( codes, controllerAction?.Parameters, ave );
             }
+            return CodeAttribute.GenerateCodesForError( codes, exception );
 
-
-            var levelCode = Codes.Level.Fatal;
-            var detailCode = Codes.Detail.Default;
-            if (exception is NormalizationException ne)
-            {
-                levelCode = ne?.LevelCode;
-                detailCode = ne?.DetailCode;
-            }
-            
-            var exceptionType = exception?.GetType();
-            var exceptionCodes = exceptionType?.GetCustomAttributes( true ).OfType<ICodeAttribute>();
-
-            if (string.IsNullOrWhiteSpace( levelCode ) || levelCode == Codes.Level.Fatal)
-            {
-                levelCode = exceptionCodes?.FirstOrDefault( c =>
-                (c?.CodePart & CodePart.Level) == CodePart.Level
-                && !string.IsNullOrWhiteSpace( c?.Code ) )?.Code;
-            }
-            if (string.IsNullOrWhiteSpace( detailCode ) || detailCode == Codes.Detail.Default)
-            {
-                detailCode = exceptionCodes?.FirstOrDefault( c =>
-               ((c?.CodePart & CodePart.Level) == CodePart.Level
-                   || (c?.CodePart & CodePart.Default) == CodePart.Default)
-               && !string.IsNullOrWhiteSpace( c?.Code ) )?.Code;
-            }
-
-            return new Dictionary<CodePart, string>
-            {
-                { CodePart.Level,levelCode ?? Codes.Level.Fatal },
-                { CodePart.Service,codes[CodePart.Service] },
-                { CodePart.Api,codes[CodePart.Api] },
-                { CodePart.Detail,detailCode ?? Codes.Detail.Default },
-            };
         }
 
-        
 
-        private static IDictionary<CodePart, string>
-        GetCodes( ActionDescriptor actionDescriptor,
+
+        private static IReadOnlyDictionary<CodePart, string>
+        GetCodes(ActionDescriptor actionDescriptor,
             string defaultLevelCode = Codes.Level.Success,
-            Type controllerRealType = null )
+            Type controllerRealType = null)
         {
             if (string.IsNullOrWhiteSpace( defaultLevelCode )) throw new ArgumentException( nameof( defaultLevelCode ) );
             var controllerDescriptor = actionDescriptor?.AsControllerActionDescriptor();
             var controllerType = controllerDescriptor?.ControllerTypeInfo;
             var interfaceType = controllerType.ImplementedInterfaces?.FirstOrDefault( i => i.IsPublic && i.Name == "I" + controllerType.Name );
-            var actionMethod = controllerDescriptor?.GetMethodInfo();
+            var actionMethod = controllerDescriptor?.MethodInfo?.GetBaseDefinition();
             var parameterTypes = actionMethod?.GetParameters()?.Select( p => p.ParameterType )?.ToArray() ?? new Type[0];
             var interfaceMethod = interfaceType?.GetMethod( actionMethod?.Name, parameterTypes );
 
@@ -114,45 +81,20 @@ namespace Cool.Normalization.Utilities
                 ?.FirstOrDefault( c => !string.IsNullOrWhiteSpace( c?.Code ) );
 
             // Ordering finded codes :  Action Method > Controller > Interface Method > Interface > Fallback > Default
-            var allCodes = actionCodes
-                .ConcatSkipNullOrEmpty( controllerCodes )
-                .ConcatSkipNullOrEmpty( interfaceMethodCodes )
-                .ConcatSkipNullOrEmpty( interfaceCodes )
-                ?.ToList() ?? new List<ICodeAttribute>( 0 );
 
-
-            var levelCode = GetPartCodeOrFallbackOrDefault( allCodes, CodePart.Level,
-                    null, defaultLevelCode );
-
-            var serviceCode = GetPartCodeOrFallbackOrDefault( allCodes, CodePart.Service,
-                    controllerCodes
-                    .ConcatSkipNullOrEmpty( interfaceCodes )
-                    ?.Where( c => (c?.CodePart & CodePart.Default) == CodePart.Default )
-                    ?.FirstOrDefault( c => !string.IsNullOrWhiteSpace( c?.Code ) ), Codes.Service.Default );
-
-            var apiCode = GetPartCodeOrFallbackOrDefault( allCodes, CodePart.Api,
-                    actionCodes
-                    .ConcatSkipNullOrEmpty( interfaceMethodCodes )
-                    ?.Where( c => (c?.CodePart & CodePart.Default) == CodePart.Default )
-                    ?.FirstOrDefault( c => !string.IsNullOrWhiteSpace( c?.Code ) ), Codes.Api.Default );
-
-            var detailCode = GetPartCodeOrFallbackOrDefault( allCodes, CodePart.Detail,
-                      outputDtoDetailCode, Codes.Detail.Default );
-
-            return new Dictionary<CodePart, string>
-            {
-                { CodePart.Level,levelCode },
-                { CodePart.Service,serviceCode },
-                { CodePart.Api,apiCode },
-                { CodePart.Detail,detailCode },
-            };
+            return CodeAttribute.GenerateCodesForSuccess( actionCodes,
+                controllerCodes,
+                interfaceMethodCodes,
+                interfaceCodes,
+                defaultLevelCode,
+                outputDtoDetailCode );
         }
 
-        private static IDictionary<CodePart, string>
+        private static IReadOnlyDictionary<CodePart, string>
         GetAbpValidationExceptionCodes(
-            IDictionary<CodePart, string> codes,
+            IReadOnlyDictionary<CodePart, string> codes,
             IList<ParameterDescriptor> parameters,
-            AbpValidationException abpValidationException )
+            AbpValidationException abpValidationException)
         {
             var firstPropertyName = abpValidationException?.ValidationErrors
                         ?.FirstOrDefault()?.MemberNames
@@ -169,10 +111,10 @@ namespace Cool.Normalization.Utilities
             return GetCodesFromProperty( codes, firstMatchedParameterType, firstMatchedProperty );
         }
 
-        private static IDictionary<CodePart, string>
-        GetCodesFromProperty( IDictionary<CodePart, string> codes,
-            Type declaringType, PropertyInfo property )
-        {//
+        private static IReadOnlyDictionary<CodePart, string>
+        GetCodesFromProperty(IReadOnlyDictionary<CodePart, string> codes,
+            Type declaringType, PropertyInfo property)
+        {
 
             //Order rule: Property > Declaring Type > Default
 
@@ -183,13 +125,13 @@ namespace Cool.Normalization.Utilities
             var allCodes = propCodes.ConcatSkipNullOrEmpty( declaringTypeCodes )
                     ?.ToList() ?? new List<ICodeAttribute>( 0 );
 
-            var levelCode = GetPartCodeOrFallbackOrDefault( allCodes, CodePart.Level,
+            var levelCode = allCodes.GetPartCodeOrFallbackOrDefault( CodePart.Level,
                     declaringTypeCodes
                     ?.Where( c => c?.CodePart == CodePart.Default )
                     ?.FirstOrDefault( c => !string.IsNullOrWhiteSpace( c?.Code ) )
                     , Codes.Level.Fatal );
 
-            var detailCode = GetPartCodeOrFallbackOrDefault( allCodes, CodePart.Level,
+            var detailCode = allCodes.GetPartCodeOrFallbackOrDefault( CodePart.Level,
                     propCodes
                     ?.Where( c => c?.CodePart == CodePart.Default )
                     ?.FirstOrDefault( c => !string.IsNullOrWhiteSpace( c?.Code ) )
@@ -203,15 +145,6 @@ namespace Cool.Normalization.Utilities
                 { CodePart.Detail,detailCode },
             };
         }
-
-        private static string GetPartCodeOrFallbackOrDefault(
-            IEnumerable<ICodeAttribute> codes, CodePart part,
-            ICodeAttribute fallbackCode, string defaultCode )
-            => (codes?.Where( c => c?.CodePart == part )
-                ?.FirstOrDefault( c => !string.IsNullOrWhiteSpace( c?.Code ) )
-                ?? fallbackCode)?.Code ?? defaultCode;
-        private static string CombineCodes( IDictionary<CodePart, string> codes )
-           => string.Concat( codes.OrderBy( c => c.Key ).Select( c => c.Value ) );
 
     }
 }

@@ -8,11 +8,11 @@ namespace Cool.Normalization.Messages
 {
     public class MessageHandlerCallExpressionBuilder : IMessageHandlerCallExpressionBuilder
     {
-        public Expression<Func<object, Task>> Build( Type messageType, string message, DateTimeOffset timestamp )
+        public Expression<Func<object, Task>> Build(Type messageType, IMessageWrapper wrapper)
         {
             var handlerType = typeof( IMessageHandler<> ).MakeGenericType( messageType );
             var objectParameter = Expression.Parameter( typeof( object ) );
-            var jsonExpr = Expression.Constant( message, typeof( string ) );
+            var jsonExpr = Expression.Constant( wrapper.Message, typeof( string ) );
             var handlerInstanceExpr = Expression.Convert( objectParameter, handlerType );
             var deserializeCall = Expression.Call(
                 typeof( JsonConvert ),
@@ -20,13 +20,13 @@ namespace Cool.Normalization.Messages
                 new[] { messageType }, jsonExpr );
             var convertJsonToMessageTypeExpr = Expression.Convert( deserializeCall, messageType );
 
-            var timestampExpr = Expression.Constant( timestamp, typeof( DateTimeOffset ) );
+            var timestampExpr = Expression.Constant( wrapper.Timestamp, typeof( DateTimeOffset ) );
 
             var bodyExpr = Expression.Call( handlerInstanceExpr,
                 nameof( IMessageHandler<DummyMessage>.HandleMessageAsync ),
                 Type.EmptyTypes,
                 convertJsonToMessageTypeExpr,
-                timestampExpr);
+                timestampExpr );
             var lambdaExpr = Expression.Lambda<Func<object, Task>>( bodyExpr, objectParameter );
             return lambdaExpr;
         }

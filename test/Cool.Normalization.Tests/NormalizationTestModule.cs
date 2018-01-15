@@ -37,6 +37,7 @@ namespace Cool.Normalization.Tests
 
         public override void Initialize()
         {
+            
             IocManager.RegisterAssemblyByConvention( typeof( NormalizationTestModule ).GetAssembly() );
         }
         private void SetupInMemoryDb()

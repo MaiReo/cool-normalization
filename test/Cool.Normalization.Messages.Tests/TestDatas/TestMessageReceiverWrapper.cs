@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cool.Normalization.Messages.Tests.TestDatas
+namespace Cool.Normalization.Messages.Tests
 {
     public class TestMessageReceiverWrapper : IMessageReceiverWrapper, ISingletonDependency
     {

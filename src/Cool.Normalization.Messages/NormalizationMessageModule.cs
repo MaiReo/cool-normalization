@@ -14,7 +14,7 @@ namespace Cool.Normalization.Messages
     public class NormalizationMessageModule : AbpModule
     {
         private IMessageReceiverWrapper _receiver;
-       
+
         public override void Initialize()
         {
             //Prevent auto starting for receiver.
@@ -22,14 +22,14 @@ namespace Cool.Normalization.Messages
             AddMissingConfiguration( IocManager.Resolve<IMessageConfiguration>() );
         }
 
-        private void AddMissingConfiguration( IMessageConfiguration messageConfiguration )
+        private void AddMissingConfiguration(IMessageConfiguration messageConfiguration)
         {
             messageConfiguration.BrokerAddress = messageConfiguration.BrokerAddress
                 ?? MessageConfiguration.Default.BrokerAddress;
             if (messageConfiguration.BrokerPort > 65535
                 || messageConfiguration.BrokerPort < 1)
             {
-                messageConfiguration.BrokerPort =  MessageConfiguration.Default.BrokerPort;
+                messageConfiguration.BrokerPort = MessageConfiguration.Default.BrokerPort;
             }
         }
 
@@ -42,7 +42,9 @@ namespace Cool.Normalization.Messages
             RegisterIfNot<IMessageResolver, MessageResolver>();
             RegisterIfNot<IMessageHandlerResolver, MessageHandlerResolver>();
             RegisterIfNot<IMessageHandlerCallExpressionBuilder, MessageHandlerCallExpressionBuilder>();
+            RegisterIfNot<IMessageHandlerCodeResolver, MessageHandlerCodeResolver>();
             RegisterIfNot<IMessageLogFormatter, MessageLogFormatter>();
+            RegisterIfNot<IMessageHandlerInvoker, MessageHandlerInvoker>();
             RegisterIfNot<IMessageHandlerBinder, MessageHandlerBinder>();
 
             using (var messageBinder = IocManager.ResolveAsDisposable<IMessageHandlerBinder>())
@@ -58,7 +60,7 @@ namespace Cool.Normalization.Messages
 
 
         private void RegisterIfNot<IService, IImpl>(
-            DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton )
+            DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
             where IService : class
             where IImpl : class, IService
         {

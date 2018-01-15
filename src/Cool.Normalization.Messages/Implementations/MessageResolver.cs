@@ -9,7 +9,7 @@ namespace Cool.Normalization.Messages
 {
     public class MessageResolver : IMessageResolver
     {
-        public IDictionary<string, Type> HasHandlerMessages(
+        public IReadOnlyDictionary<string, Type> HasHandlerMessages(
             IIocResolver iocResolver )
         {
             var allMessageHandlers = iocResolver.ResolveAll<IMessageHandler>();

@@ -7,6 +7,6 @@ namespace Cool.Normalization.Messages
 {
     public interface IMessageResolver
     {
-        IDictionary<string, Type> HasHandlerMessages( IIocResolver iocResolver );
+        IReadOnlyDictionary<string, Type> HasHandlerMessages( IIocResolver iocResolver );
     }
 }
