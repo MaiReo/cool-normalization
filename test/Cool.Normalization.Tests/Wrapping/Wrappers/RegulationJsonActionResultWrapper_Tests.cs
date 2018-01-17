@@ -32,7 +32,7 @@ namespace Cool.Normalization.Tests
         [Fact]
         public void Wrap_Test()
         {
-            var wrapper = new normalizationJsonActionResultWrapper( _resultAuditingHelper, _requestIdAccessor, _resultCodeGenerator );
+            var wrapper = new NormalizationJsonActionResultWrapper( _resultAuditingHelper, _requestIdAccessor, _resultCodeGenerator );
             var result = new JsonResult( new { name = "value" } );
             var context = MakeResultExecutingContext( result );
 

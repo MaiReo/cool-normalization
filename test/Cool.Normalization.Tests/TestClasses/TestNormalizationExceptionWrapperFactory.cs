@@ -12,7 +12,7 @@ namespace Cool.Normalization.Tests
         public INormalizationExceptionWrapper CreateFor( ExceptionContext exceptionContext )
         {
             CallCountOfCreateFor++;
-            return new NullnormalizationExceptionWrapper();
+            return new NullNormalizationExceptionWrapper();
         }
     }
 }

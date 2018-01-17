@@ -36,7 +36,7 @@ namespace Cool.Normalization.Tests
         [Fact]
         public void Wrap_Test()
         {
-            var wrapper = new normalizationExceptionWrapper( _eventBus, _requestIdAccessor, _resultCodeGenerator, _errorMessageGenerator, _resultAuditingHelper );
+            var wrapper = new NormalizationExceptionWrapper( _eventBus, _requestIdAccessor, _resultCodeGenerator, _errorMessageGenerator, _resultAuditingHelper );
             var context = MakeExceptionContext( new NormalizationException( "04", "76", "Error" ) );
 
             wrapper.Wrap( context );

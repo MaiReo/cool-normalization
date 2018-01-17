@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Cool.Normalization.Wrapping
 {
-    public class NullnormalizationActionResultWrapper : IAbpActionResultWrapper
+    public class NullNormalizationActionResultWrapper : IAbpActionResultWrapper
     {
        
 
-        public NullnormalizationActionResultWrapper()
+        public NullNormalizationActionResultWrapper()
         {
            
         }

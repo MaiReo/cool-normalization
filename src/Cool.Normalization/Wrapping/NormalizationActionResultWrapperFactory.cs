@@ -31,20 +31,20 @@ namespace Cool.Normalization.Wrapping
 
             if (actionResult.Result is ObjectResult)
             {
-                return new normalizationObjectActionResultWrapper( _auditingResultHelper, requestIdAccessor,
+                return new NormalizationObjectActionResultWrapper( _auditingResultHelper, requestIdAccessor,
                     resultCodeGenerator, actionResult.HttpContext.RequestServices );
             }
 
             if (actionResult.Result is JsonResult)
             {
-                return new normalizationJsonActionResultWrapper( _auditingResultHelper, requestIdAccessor, resultCodeGenerator );
+                return new NormalizationJsonActionResultWrapper( _auditingResultHelper, requestIdAccessor, resultCodeGenerator );
             }
 
             if (actionResult.Result is EmptyResult)
             {
-                return new normalizationEmptyActionResultWrapper( _auditingResultHelper, requestIdAccessor, resultCodeGenerator );
+                return new NormalizationEmptyActionResultWrapper( _auditingResultHelper, requestIdAccessor, resultCodeGenerator );
             }
-            return new NullnormalizationActionResultWrapper();
+            return new NullNormalizationActionResultWrapper();
         }
     }
 }

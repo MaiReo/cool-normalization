@@ -15,14 +15,14 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 
 namespace Cool.Normalization.Wrapping
 {
-    public class normalizationObjectActionResultWrapper : IAbpActionResultWrapper
+    public class NormalizationObjectActionResultWrapper : IAbpActionResultWrapper
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly IResultAuditingHelper _auditingResultHelper;
         private readonly IRequestIdAccessor _requestIdAccessor;
         private readonly IResultCodeGenerator _resultCodeGenerator;
 
-        public normalizationObjectActionResultWrapper( IResultAuditingHelper auditingResultHelper,
+        public NormalizationObjectActionResultWrapper( IResultAuditingHelper auditingResultHelper,
             IRequestIdAccessor requestIdAccessor, IResultCodeGenerator resultCodeGenerator,
             IServiceProvider serviceProvider )
         {

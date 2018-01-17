@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
-
+/*
+ * HttpContext.Current
+ */
 namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>

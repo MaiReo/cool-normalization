@@ -1,4 +1,10 @@
-﻿using Abp.Configuration.Startup;
+﻿/*
+ * void Initialize()
+ * {
+ *   Configuration.Modules.Normalization().RequestIdHeaderName="X-Cool-RequestId";
+ * }
+ */
+using Abp.Configuration.Startup;
 using Cool.Normalization.Configuration;
 
 namespace Cool.Normalization

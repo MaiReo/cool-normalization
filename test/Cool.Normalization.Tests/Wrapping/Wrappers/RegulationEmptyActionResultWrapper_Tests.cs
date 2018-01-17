@@ -32,7 +32,7 @@ namespace Cool.Normalization.Tests
         [Fact]
         public void Wrap_Test()
         {
-            var wrapper = new normalizationEmptyActionResultWrapper( _resultAuditingHelper, _requestIdAccessor, _resultCodeGenerator );
+            var wrapper = new NormalizationEmptyActionResultWrapper( _resultAuditingHelper, _requestIdAccessor, _resultCodeGenerator );
             var result = new EmptyResult();
             var context = MakeResultExecutingContext( result );
 
