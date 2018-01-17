@@ -1,4 +1,10 @@
-﻿using Abp.AspNetCore.Mvc.ExceptionHandling;
+﻿#region 程序集 Version=1.0.6
+/*
+ * 模块初始化方法，用于MVC项目Configuration启动时调用。
+ */
+#endregion
+
+using Abp.AspNetCore.Mvc.ExceptionHandling;
 using Cool.Normalization;
 using Cool.Normalization.Filters;
 using Microsoft.AspNetCore.Mvc;

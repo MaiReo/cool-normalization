@@ -1,9 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using System;
+﻿#region 程序集 Version=1.0.6
 /*
+ * 扩展方法
  * HttpContext.Current
  */
+#endregion
+
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using System;
+
 namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
