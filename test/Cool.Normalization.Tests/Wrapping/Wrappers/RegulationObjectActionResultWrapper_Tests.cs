@@ -34,7 +34,7 @@ namespace Cool.Normalization.Tests
         [Fact]
         public void Wrap_Test()
         {
-            var wrapper = new normalizationObjectActionResultWrapper( _resultAuditingHelper, _requestIdAccessor, _resultCodeGenerator, _serviceProvider );
+            var wrapper = new NormalizationObjectActionResultWrapper( _resultAuditingHelper, _requestIdAccessor, _resultCodeGenerator, _serviceProvider );
             var result = new ObjectResult( "hey" );
             //skip using _serviceProvider
             result.Formatters.Add( new JsonOutputFormatter( new Newtonsoft.Json.JsonSerializerSettings { }, ArrayPool<char>.Create() ) );

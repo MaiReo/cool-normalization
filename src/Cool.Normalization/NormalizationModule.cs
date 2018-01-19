@@ -30,17 +30,16 @@ namespace Cool.Normalization
         public override void Initialize()
         {
             var moduleConfiguration = Configuration.Modules.Normalization();
-            if (moduleConfiguration.UseWrapping)
-            {
-                // An ugly replacement
-                Configuration.IocManager.IocContainer.Register(
-                    Component
-                    .For<IAbpActionResultWrapperFactory>()
-                    .ImplementedBy<NormalizationActionResultWrapperFactory>()
-                    .IsDefault()
-                    .LifestyleTransient()
-                    );
-            }
+
+            // An ugly replacement
+            Configuration.IocManager.IocContainer.Register(
+                Component
+                .For<IAbpActionResultWrapperFactory>()
+                .ImplementedBy<NormalizationActionResultWrapperFactory>()
+                .IsDefault()
+                .LifestyleTransient()
+                );
+
             IocManager.RegisterAssemblyByConvention( typeof( NormalizationModule ).GetAssembly() );
         }
 

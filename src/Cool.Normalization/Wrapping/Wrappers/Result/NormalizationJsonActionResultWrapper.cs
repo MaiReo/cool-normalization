@@ -1,22 +1,22 @@
 ﻿using Abp.AspNetCore.Mvc.Results.Wrapping;
-using Cool.Normalization.Auditing;
 using Cool.Normalization.Models;
 using Cool.Normalization.Utilities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System;
+using Cool.Normalization.Auditing;
+using Microsoft.AspNetCore.Mvc.Controllers;
 
 namespace Cool.Normalization.Wrapping
 {
-    public class normalizationEmptyActionResultWrapper : IAbpActionResultWrapper
+    public class NormalizationJsonActionResultWrapper : IAbpActionResultWrapper
     {
         private readonly IResultAuditingHelper _auditingResultHelper;
         private readonly IRequestIdAccessor _requestIdAccessor;
         private readonly IResultCodeGenerator _resultCodeGenerator;
 
-        public normalizationEmptyActionResultWrapper( IResultAuditingHelper auditingResultHelper,
-            IRequestIdAccessor requestIdAccessor,
-            IResultCodeGenerator resultCodeGenerator )
+        public NormalizationJsonActionResultWrapper( Auditing.IResultAuditingHelper auditingResultHelper,
+            IRequestIdAccessor requestIdAccessor, IResultCodeGenerator resultCodeGenerator )
         {
             this._auditingResultHelper = auditingResultHelper;
             this._requestIdAccessor = requestIdAccessor;
@@ -25,11 +25,18 @@ namespace Cool.Normalization.Wrapping
 
         public void Wrap( ResultExecutingContext actionResult )
         {
-            var resultId = _requestIdAccessor.GetRequestId( actionResult );
-            var resultCode = _resultCodeGenerator.GetCode( actionResult.ActionDescriptor, actionResult.Controller?.GetType() );
+            var jsonResult = actionResult.Result as JsonResult;
+            if (jsonResult == null)
+            {
+                throw new ArgumentException( $"{nameof( actionResult )} should be JsonResult!" );
+            }
+            if (jsonResult.Value is NormalizationResponseBase) return;
 
-            var normalizationResponse = new NormalizationResponse( resultId, resultCode );
-            actionResult.Result = new ObjectResult( normalizationResponse );
+            var requestId = _requestIdAccessor.GetRequestId( actionResult );
+            var resultCode = _resultCodeGenerator.GetCode( actionResult.ActionDescriptor, actionResult.Controller?.GetType() );
+            var normalizationResponse = new NormalizationResponse( requestId, resultCode, jsonResult.Value );
+
+            jsonResult.Value = normalizationResponse;
 
             if (_auditingResultHelper.ShouldSaveAudit( (actionResult.ActionDescriptor as ControllerActionDescriptor)?.MethodInfo ))
             {

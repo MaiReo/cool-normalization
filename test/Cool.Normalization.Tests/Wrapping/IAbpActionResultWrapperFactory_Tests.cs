@@ -32,7 +32,7 @@ namespace Cool.Normalization.Tests
             var context = MakeResultExecutingContext( new ObjectResult( value ) );
             var wrapper = _abpActionResultWrapperFactory.CreateFor( context );
             wrapper.ShouldNotBeNull();
-            wrapper.ShouldBeOfType<normalizationObjectActionResultWrapper>();
+            wrapper.ShouldBeOfType<NormalizationObjectActionResultWrapper>();
         }
 
         [Fact]
@@ -46,7 +46,7 @@ namespace Cool.Normalization.Tests
             var context = MakeResultExecutingContext( new JsonResult( value ) );
             var wrapper = _abpActionResultWrapperFactory.CreateFor( context );
             wrapper.ShouldNotBeNull();
-            wrapper.ShouldBeOfType<normalizationJsonActionResultWrapper>();
+            wrapper.ShouldBeOfType<NormalizationJsonActionResultWrapper>();
         }
 
         [Fact]
@@ -56,7 +56,7 @@ namespace Cool.Normalization.Tests
             var context = MakeResultExecutingContext( new EmptyResult() );
             var wrapper = _abpActionResultWrapperFactory.CreateFor( context );
             wrapper.ShouldNotBeNull();
-            wrapper.ShouldBeOfType<normalizationEmptyActionResultWrapper>();
+            wrapper.ShouldBeOfType<NormalizationEmptyActionResultWrapper>();
         }
 
 

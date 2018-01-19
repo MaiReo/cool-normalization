@@ -2,10 +2,10 @@
 
 namespace Cool.Normalization.Wrapping
 {
-    public class NullnormalizationExceptionWrapper : INormalizationExceptionWrapper
+    public class NullNormalizationExceptionWrapper : INormalizationExceptionWrapper
     {
        
-        public NullnormalizationExceptionWrapper()
+        public NullNormalizationExceptionWrapper()
         {
             
         }

@@ -1,4 +1,10 @@
-﻿using Abp.AspNetCore.Mvc.ExceptionHandling;
+﻿#region 程序集 Version=1.0.6
+/*
+ * 模块初始化方法，用于MVC项目Configuration启动时调用。
+ */
+#endregion
+
+using Abp.AspNetCore.Mvc.ExceptionHandling;
 using Cool.Normalization;
 using Cool.Normalization.Filters;
 using Microsoft.AspNetCore.Mvc;
@@ -13,8 +19,10 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddNormalization( this IServiceCollection services )
         {
             services.AddHttpContextAccessor();
-            services.TryAddScoped<IRequestIdGenerator, RequestIdGenerator>();
             services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
+
+            services.TryAddScoped<IRequestIdGenerator, RequestIdGenerator>();
+            
             services.PostConfigure<MvcOptions>( options =>
             {
                 var abpExceptionFilter = options.Filters.OfType<ServiceFilterAttribute>().FirstOrDefault( filter => filter.ServiceType == typeof( AbpExceptionFilter ) );

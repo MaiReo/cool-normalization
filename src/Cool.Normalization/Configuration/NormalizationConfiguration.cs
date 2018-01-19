@@ -6,18 +6,8 @@
 
         public NormalizationConfiguration()
         {
-            this.UseWrapping = true;
-            this.ResultAuditing = true;
-            this.RequestIdHeaderName = "X-Cool-RequestId";
+            this._requestId = "X-Cool-RequestId";
         }
-        /// <summary>
-        /// 使用规范包装输出结果
-        /// </summary>
-        public bool UseWrapping { get; set; }
-        /// <summary>
-        /// 审计
-        /// </summary>
-        public bool ResultAuditing { get; set; }
         /// <summary>
         /// 
         /// </summary>

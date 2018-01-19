@@ -24,7 +24,7 @@ namespace Cool.Normalization.Tests
             var errorContext = CreateContext();
             var wrapper = _normalizationExceptionWrapperFactory.CreateFor( errorContext );
             wrapper.ShouldNotBeNull();
-            wrapper.ShouldBeOfType<normalizationExceptionWrapper>();
+            wrapper.ShouldBeOfType<NormalizationExceptionWrapper>();
         }
 
         private ExceptionContext CreateContext()

@@ -13,14 +13,14 @@ using System.Net;
 
 namespace Cool.Normalization.Wrapping
 {
-    public class normalizationExceptionWrapper : INormalizationExceptionWrapper
+    public class NormalizationExceptionWrapper : INormalizationExceptionWrapper
     {
         private readonly IRequestIdAccessor _requestIdAccessor;
         private readonly IResultCodeGenerator _resultCodeGenerator;
         private readonly IErrorMessageGenerator _errorMessageGenerator;
         private readonly IEventBus _eventBus;
         private readonly IResultAuditingHelper _resultAuditingHelper;
-        public normalizationExceptionWrapper( IEventBus eventBus,
+        public NormalizationExceptionWrapper( IEventBus eventBus,
             IRequestIdAccessor requestIdAccessor,
             IResultCodeGenerator resultCodeGenerator,
             IErrorMessageGenerator errorMessageGenerator ,

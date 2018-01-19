@@ -32,7 +32,7 @@ namespace Cool.Normalization.Wrapping
 
         public INormalizationExceptionWrapper CreateFor( ExceptionContext exceptionContext )
         {
-            return new normalizationExceptionWrapper( EventBus, 
+            return new NormalizationExceptionWrapper( EventBus, 
                 _requestIdAccessor,
                 _resultCodeGenerator,
                 _errorMessageGenerator, 
