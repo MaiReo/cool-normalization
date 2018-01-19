@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cool.Normalization", "src\Cool.Normalization\Cool.Normalization.csproj", "{DE08ED38-CBA9-4444-87E5-64567F98A917}"
 EndProject
@@ -42,7 +42,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cool.Message.Proxy", "src\C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cool.Normalization.Client.Abstractions", "src\Cool.Normalization.Client.Abstractions\Cool.Normalization.Client.Abstractions.csproj", "{729C72F3-A4F0-4C9C-A7C0-12A32F758CA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cool.Normalization.Messages.Abp076", "src\Cool.Normalization.Messages.Abp076\Cool.Normalization.Messages.Abp076.csproj", "{1DF63BD4-F9BC-4BFA-8ED4-71ADF786AFA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cool.Normalization.Messages.Abp076", "src\Cool.Normalization.Messages.Abp076\Cool.Normalization.Messages.Abp076.csproj", "{1DF63BD4-F9BC-4BFA-8ED4-71ADF786AFA0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cool.Normalization.Permissions", "src\Cool.Normalization.Permissions\Cool.Normalization.Permissions.csproj", "{6E2C5FEB-9CB2-42FB-B1B5-90224DD20F6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -106,6 +108,10 @@ Global
 		{1DF63BD4-F9BC-4BFA-8ED4-71ADF786AFA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DF63BD4-F9BC-4BFA-8ED4-71ADF786AFA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DF63BD4-F9BC-4BFA-8ED4-71ADF786AFA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E2C5FEB-9CB2-42FB-B1B5-90224DD20F6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E2C5FEB-9CB2-42FB-B1B5-90224DD20F6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E2C5FEB-9CB2-42FB-B1B5-90224DD20F6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E2C5FEB-9CB2-42FB-B1B5-90224DD20F6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -125,6 +131,7 @@ Global
 		{9DA5BFBD-F6BC-4487-97FF-66D4DDC88267} = {66D39592-D4D2-45A0-88F5-0C11E2C05B96}
 		{729C72F3-A4F0-4C9C-A7C0-12A32F758CA7} = {66D39592-D4D2-45A0-88F5-0C11E2C05B96}
 		{1DF63BD4-F9BC-4BFA-8ED4-71ADF786AFA0} = {66D39592-D4D2-45A0-88F5-0C11E2C05B96}
+		{6E2C5FEB-9CB2-42FB-B1B5-90224DD20F6B} = {66D39592-D4D2-45A0-88F5-0C11E2C05B96}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {12BBE57E-F306-46C8-9C15-B98EA00DC44E}

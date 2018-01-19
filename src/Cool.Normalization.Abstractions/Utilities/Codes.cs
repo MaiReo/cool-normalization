@@ -35,6 +35,11 @@
             /// 严重错误
             /// </summary>
             public const string Fatal = "99";
+
+            /// <summary>
+            /// 标识身份验证失败
+            /// </summary>
+            public const string AuthorizationFailed = "04";
         }
 
     }

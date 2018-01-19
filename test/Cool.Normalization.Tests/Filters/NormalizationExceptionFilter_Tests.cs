@@ -18,7 +18,7 @@ namespace Cool.Normalization.Tests.Filters
         {
             var normalizationExceptionFilter = Resolve<NormalizationExceptionFilter>();
             var testFactory = TestNormalizationExceptionWrapperFactory.Instance;
-            normalizationExceptionFilter.normalizationExceptionWrapperFactory = testFactory;
+            normalizationExceptionFilter.NormalizationExceptionWrapperFactory = testFactory;
             var httpRequest = new TestHttpRequest();
             var httpResponse = new TestHttpResponse();
             var httpContext = new TestHttpContext( httpRequest ,httpResponse);
@@ -49,7 +49,7 @@ namespace Cool.Normalization.Tests.Filters
         {
             var normalizationExceptionFilter = Resolve<NormalizationExceptionFilter>();
             var testFactory = TestNormalizationExceptionWrapperFactory.Instance;
-            normalizationExceptionFilter.normalizationExceptionWrapperFactory = testFactory;
+            normalizationExceptionFilter.NormalizationExceptionWrapperFactory = testFactory;
             var httpRequest = new TestHttpRequest();
             var httpResponse = new TestHttpResponse();
             var httpContext = new TestHttpContext( httpRequest, httpResponse );

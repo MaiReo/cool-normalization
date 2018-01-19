@@ -11,6 +11,7 @@ using Abp.Runtime.Validation;
 using System.Linq.Extensions;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using Abp.Authorization;
 
 namespace Cool.Normalization.Utilities
 {
