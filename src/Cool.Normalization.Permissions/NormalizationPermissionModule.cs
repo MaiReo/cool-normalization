@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Abp.Configuration.Startup;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Cool.Normalization
 {
@@ -12,6 +13,7 @@ namespace Cool.Normalization
     {
         public override void PreInitialize()
         {
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             Configuration.ReplaceService<IAbpSession, AccessTokenAbpSession>();
         }
     }
