@@ -8,7 +8,7 @@
     <Copyright>HouseCool</Copyright>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>Cool.Normalization.snk</AssemblyOriginatorKeyFile>
-    <Version>1.0.6</Version>
+    <Version>1.0.7</Version>
     <PackageIconUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/cool-icon.ico</PackageIconUrl>
     <PackageProjectUrl>https://github.com/MaiReo/cool-normalization</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/LICENSE</PackageLicenseUrl>

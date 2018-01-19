@@ -33,7 +33,9 @@ namespace Cool.Normalization.Utilities
             var codes = GetCodes( actionDescriptor, Codes.Level.Fatal );
             if (exception is AbpValidationException ave)
             {
-                return GetAbpValidationExceptionCodes( codes, controllerAction?.Parameters, ave );
+                var newCodes = codes.ToDictionary( c => c.Key, c => c.Value );
+                newCodes[CodePart.Level] = Codes.Level.ArgumentError;
+                return GetAbpValidationExceptionCodes( newCodes, controllerAction?.Parameters, ave );
             }
             return CodeAttribute.GenerateCodesForError( codes, exception );
 
