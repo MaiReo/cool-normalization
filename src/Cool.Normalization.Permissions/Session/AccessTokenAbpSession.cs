@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Cool.Normalization.Permissions
 {
-    public class AccessTokenAbpSession : ClaimsAbpSession, IMayHaveAbpUserIdAbpSession, IMayHaveAccountIdAbpSession, IAbpSession, ISingletonDependency
+    public class AccessTokenAbpSession : ClaimsAbpSession, IAccessTokenAbpSession, IMayHaveAbpUserIdAbpSession, IMayHaveAccountIdAbpSession, IAbpSession, ISingletonDependency
     {
         public AccessTokenAbpSession(IPrincipalAccessor principalAccessor,
             IMultiTenancyConfig multiTenancy,
@@ -18,7 +18,7 @@ namespace Cool.Normalization.Permissions
         {
         }
 
-        public override long? UserId => AbpUserId ?? base.UserId ?? this.AccountId;
+        public override long? UserId => this.AccountId ?? this.AbpUserId ?? base.UserId;
 
         public long? AccountId => this.GetAccountIdFromToken();
 

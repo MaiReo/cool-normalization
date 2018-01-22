@@ -1,9 +1,4 @@
-﻿using Abp.Runtime.Session;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Cool.Normalization
+﻿namespace Abp.Runtime.Session
 {
     public interface IMayHaveAccountIdAbpSession : IAbpSession
     {

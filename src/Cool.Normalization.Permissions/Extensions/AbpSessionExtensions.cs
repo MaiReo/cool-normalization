@@ -1,14 +1,13 @@
-﻿using Abp.Runtime.Session;
+﻿using Abp;
+using Abp.Runtime.Session;
 using Cool.Normalization;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Abp.Runtime.Session
 {
+
     public static class AbpSessionExtensions
     {
-        public static long GetAccountId(IAbpSession abpSession)
+        public static long GetAccountId(this IAbpSession abpSession)
         {
             if (abpSession is IMayHaveAccountIdAbpSession session)
             {
@@ -17,7 +16,7 @@ namespace Abp.Runtime.Session
             throw new AbpException( "There is no AccountId!" );
         }
 
-        public static long GetAbpUserId(IAbpSession abpSession)
+        public static long GetAbpUserId(this IAbpSession abpSession)
         {
             if (abpSession is IMayHaveAbpUserIdAbpSession session)
             {
