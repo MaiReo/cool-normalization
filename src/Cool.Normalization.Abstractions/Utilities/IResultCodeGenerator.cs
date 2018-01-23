@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc.Abstractions;
+﻿#if NET452
+using System.Web.Mvc;
+#else
+using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Filters;
+#endif
 using System;
 using System.Collections.Generic;
 using System.Reflection;

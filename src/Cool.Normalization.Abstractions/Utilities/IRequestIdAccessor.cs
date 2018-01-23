@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿#if NET452
+using System.Web.Mvc;
+#else
+using Microsoft.AspNetCore.Mvc.Filters;
+#endif
 
 namespace Cool.Normalization.Utilities
 {

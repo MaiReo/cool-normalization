@@ -9,7 +9,7 @@ namespace Cool.Normalization.Permissions
 {
     public class AssemblyNameResolver : IAssemblyNameResolver, ISingletonDependency
     {
-        public IAssemblyName ResolveEntryName(Assembly assembly)
+        public virtual IAssemblyName ResolveEntryName(Assembly assembly)
         {
             assembly = Assembly.GetEntryAssembly() ?? assembly;
             var uniqueName = assembly.GetName().Name;

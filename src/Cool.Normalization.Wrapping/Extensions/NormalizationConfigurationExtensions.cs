@@ -16,7 +16,7 @@ namespace Cool.Normalization
 {
     public static class NormalizationConfigurationExtensions
     {
-        public static INormalizationConfiguration Normalization( this IModuleConfigurations module )
+        public static INormalizationConfiguration NormalizationWrapping( this IModuleConfigurations module )
             => module.AbpConfiguration.Get<INormalizationConfiguration>();
     }
 }

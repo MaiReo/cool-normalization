@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Company>HouseCool</Company>
+    <Authors>MaiReo</Authors>
+    <Copyright>HouseCool</Copyright>
+    <Version>1.0.0</Version>
+    <PackageIconUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/cool-icon.ico</PackageIconUrl>
+    <PackageProjectUrl>http://rd-server:8080/tfs/MicroserviceCollection/TestProject/_git/common.Normalization</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/LICENSE</PackageLicenseUrl>
+    <Description>提供权限验证的微服务实现</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="cool.permission.client" Version="0.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cool.Normalization.Client.AbpIntegration\Cool.Normalization.Client.AbpIntegration.csproj" />
+    <ProjectReference Include="..\Cool.Normalization.Permissions\Cool.Normalization.Permissions.csproj" />
+  </ItemGroup>
+
+</Project>

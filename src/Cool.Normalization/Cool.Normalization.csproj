@@ -6,11 +6,9 @@
     <Company>HouseCool</Company>
     <Authors>MaiReo</Authors>
     <Copyright>HouseCool</Copyright>
-    <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>Cool.Normalization.snk</AssemblyOriginatorKeyFile>
-    <Version>1.0.8</Version>
+    <Version>1.1.0</Version>
     <PackageIconUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/cool-icon.ico</PackageIconUrl>
-    <PackageProjectUrl>https://github.com/MaiReo/cool-normalization</PackageProjectUrl>
+    <PackageProjectUrl>http://rd-server:8080/tfs/microservicecollection/TestProject/_git/common.Normalization</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
@@ -23,12 +21,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Abp" Version="3.2.4" />
-    <PackageReference Include="Abp.AspNetCore" Version="3.2.4" />
+    <ProjectReference Include="..\Cool.Normalization.Client.AbpIntegration\Cool.Normalization.Client.AbpIntegration.csproj" />
+    <ProjectReference Include="..\Cool.Normalization.Permissions.RemoteProxies\Cool.Normalization.Permissions.RemoteProxies.csproj" />
+    <ProjectReference Include="..\Cool.Normalization.StdoutAuditingStore\Cool.Normalization.StdoutAuditingStore.csproj" />
+    <ProjectReference Include="..\Cool.Normalization.SwaggerIntegration\Cool.Normalization.SwaggerIntegration.csproj" />
+    <ProjectReference Include="..\Cool.Normalization.Wrapping\Cool.Normalization.Wrapping.csproj" />
+    <ProjectReference Include="..\Cool.Validations\Cool.Validations.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Cool.Normalization.Abstractions\Cool.Normalization.Abstractions.csproj" />
-  </ItemGroup>
+  
 
 </Project>

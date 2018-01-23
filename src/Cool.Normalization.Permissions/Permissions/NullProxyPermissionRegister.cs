@@ -8,7 +8,7 @@ namespace Cool.Normalization.Permissions
 {
     public class NullProxyPermissionRegister : IPermissionRegister, ISingletonDependency
     {
-        public void Register(string name, string displayName, IEnumerable<Permission> permissions)
+        public void Register(string name, string displayName, IEnumerable<CoolPermission> permissions)
         {
             //No actions.
         }

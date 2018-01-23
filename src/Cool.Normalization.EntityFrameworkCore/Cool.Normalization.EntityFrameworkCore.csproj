@@ -10,7 +10,7 @@
     <Company>HouseCool</Company>
     <Copyright>HouseCool</Copyright>
     <PackageIconUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/cool-icon.ico</PackageIconUrl>
-    <PackageProjectUrl>https://github.com/MaiReo/cool-normalization</PackageProjectUrl>
+    <PackageProjectUrl>http://rd-server:8080/tfs/microservicecollection/TestProject/_git/common.Normalization</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 

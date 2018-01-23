@@ -5,7 +5,7 @@ using System;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class ServiceCollectionExtensions
+    public static class PermissionServiceCollectionExtensions
     {
         public static IServiceCollection AddAuth(this IServiceCollection services,
             string authority = CoolAuthenticationDefaults.Authority,
@@ -26,6 +26,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
                 options.ApiSecret = apiSecret ?? CoolAuthenticationDefaults.ApiSecret
                     ?? throw new ArgumentNullException( nameof( apiSecret ) );
+                options.Validate();
             } );
 
             return services;

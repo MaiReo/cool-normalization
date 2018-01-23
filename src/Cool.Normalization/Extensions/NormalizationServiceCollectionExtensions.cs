@@ -1,51 +1,41 @@
-﻿#region 程序集 Version=1.0.6
-/*
- * 模块初始化方法，用于MVC项目Configuration启动时调用。
- */
-#endregion
-
-using Abp.AspNetCore.Mvc.Authorization;
-using Abp.AspNetCore.Mvc.ExceptionHandling;
-using Cool.Normalization;
-using Cool.Normalization.Filters;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Text;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static class NormalizationServiceCollectionExtensions
     {
-        public static IServiceCollection AddNormalization(this IServiceCollection services)
+        public static string DisplayName { get; private set; }
+        static NormalizationServiceCollectionExtensions()
         {
-            services.AddHttpContextAccessor();
-            services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
-
-            services.TryAddScoped<IRequestIdGenerator, RequestIdGenerator>();
-
-            services.PostConfigure<MvcOptions>( options =>
-                options.ReplaceServiceFilter<AbpExceptionFilter, NormalizationExceptionFilter>()
-                .ReplaceServiceFilter<AbpAuthorizationFilter, NormalizationAuthorizationFilter>()
-             );
-            return services;
+            DisplayName = Assembly.GetEntryAssembly().GetName().Name;
         }
-
-        private static MvcOptions ReplaceServiceFilter<TOriginal, TReplacement>(this MvcOptions options)
-            where TOriginal : IFilterMetadata
-            where TReplacement : IFilterMetadata
+        public static IServiceCollection AddNormalization(this IServiceCollection services,
+            string displayName = default,
+            bool? addWrapping = default,
+            bool? addSwagger = default,
+            bool? addAuth = default)
         {
-
-            var originals = options.Filters.OfType<ServiceFilterAttribute>()
-                .Where( filter => typeof( TOriginal ).IsAssignableFrom( filter.ServiceType ) )
-                .ToList();
-            foreach (var original in originals)
+            if (string.IsNullOrWhiteSpace( displayName ))
             {
-                options.Filters.Remove( original );
+                displayName = DisplayName;
             }
-            options.Filters.AddService<TReplacement>();
-            return options;
+            else
+            {
+                DisplayName = displayName;
+            }
+            if (addWrapping != false)
+            {
+                services.AddNormalizationWrapping();
+            }
+            if (addAuth == true)
+            {
+                services.AddAuth();
+            }
+            services.AddSwaggerEtc( displayName, addAuth == true );
+            return services;
         }
     }
 }

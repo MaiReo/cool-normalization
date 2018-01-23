@@ -1,12 +1,10 @@
-﻿using Abp.Authorization;
-using System;
+﻿using Cool.Normalization.Permissions;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Cool.Normalization
+namespace Cool.Normalization.Permissions
 {
     public interface IPermissionRegister
     {
-        void Register(string name, string displayName, IEnumerable<Permission> permissions);
+        void Register(string name, string displayName, IEnumerable<CoolPermission> permissions);
     }
 }

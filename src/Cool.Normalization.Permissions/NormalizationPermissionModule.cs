@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Text;
 using Abp.Configuration.Startup;
 using System.IdentityModel.Tokens.Jwt;
-using Abp.Authorization;
 using Abp.Dependency;
 using Abp.MultiTenancy;
 
@@ -19,7 +18,7 @@ namespace Cool.Normalization
         {
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             Configuration.ReplaceService<IAbpSession, AccessTokenAbpSession>();
-            Configuration.ReplaceService<IPermissionChecker, ProxyPermissionChecker>();
+            Configuration.ReplaceService<Abp.Authorization.IPermissionChecker, ProxyPermissionChecker>();
         }
 
         public override void Initialize()
@@ -29,16 +28,11 @@ namespace Cool.Normalization
 
         public override void PostInitialize()
         {
-            using (var nameResolver = IocManager.ResolveAsDisposable<IAssemblyNameResolver>())
+            IocManager.RegisterIfNot<IPermissionProvider, NullPermissionProvider>();
+
             using (var permissionManager = IocManager.ResolveAsDisposable<IPermissionManager>())
-            using (var permissionRegister = IocManager.ResolveAsDisposable<IPermissionRegister>())
             {
-                var assemblyName = nameResolver.Object.ResolveEntryName(
-                    typeof( NormalizationPermissionModule ).Assembly );
-                permissionRegister.Object.Register(
-                    assemblyName.UniqueName,
-                    assemblyName.DisplayName,
-                    permissionManager.Object.GetAllPermissions( false ) );
+                permissionManager.Object.Register();
             }
         }
     }

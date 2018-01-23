@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿#if NET452
+using System.Web.Mvc;
+#else
+using Microsoft.AspNetCore.Mvc.Filters;
+#endif
 
 namespace Cool.Normalization.Wrapping
 {

@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Cool.Normalization.StdoutAuditingStore\Cool.Normalization.StdoutAuditingStore.csproj" />
-    <ProjectReference Include="..\Cool.Normalization.Tests\Cool.Normalization.Tests.csproj" />
+    <ProjectReference Include="..\Cool.Normalization.Wrapping.Tests\Cool.Normalization.Wrapping.Tests.csproj" />
   </ItemGroup>
 
 </Project>
