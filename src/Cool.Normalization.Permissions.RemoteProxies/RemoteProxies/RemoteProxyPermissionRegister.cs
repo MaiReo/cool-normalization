@@ -42,15 +42,16 @@ namespace Cool.Normalization.Permissions
             int level = 0)
         {
             var list = new List<PermissionDto>();
+            var dotCount = parent?.Name?.Count( c => c == '.' ) ?? 0;
             var children = permissions.Where(
                 p => parent == default( CoolPermission )
                 ? (!p.Name.Contains( "." ))
-                : p.Name.StartsWith( parent.Name + "." ) );
+                : p.Name.StartsWith( parent.Name + "." ) && p.Name.Count( c => c == '.' ) == dotCount + 1 ).ToList();
             foreach (var child in children)
             {
                 var dto = new PermissionDto( child.Name, child.DisplayName, level );
                 list.Add( dto );
-                list.AddRange( MapToDto( permissions, child, ++level ) );
+                list.AddRange( MapToDto( permissions, child, level + 1 ) );
             }
             return list;
         }
