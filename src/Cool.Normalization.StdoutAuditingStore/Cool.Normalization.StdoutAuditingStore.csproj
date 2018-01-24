@@ -12,6 +12,7 @@
     <PackageProjectUrl>http://rd-server:8080/tfs/MicroserviceCollection/TestProject/_git/common.Normalization</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/LICENSE</PackageLicenseUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSource>true</IncludeSource>
     <Version>1.1.1</Version>
   </PropertyGroup>
 
@@ -21,6 +22,8 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <DocumentationFile>bin\Release\netstandard2.0\Cool.Normalization.StdoutAuditingStore.xml</DocumentationFile>
+    <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
