@@ -23,7 +23,8 @@ namespace Cool.Normalization.Permissions
             try
             {
                 var response = await _permissionApi.IsGrantAsync( new IsGrantInput( accountId, permissionName, uniqueName ) );
-                if (!response.Code.StartsWith( Codes.Level.Success ))
+                //if (!response.Code.StartsWith( Codes.Level.Success ))
+                if (!response.IsSuccess())
                 {
                     throw new NormalizationException( "02", "03", "无法访问权限服务" );
                 }
