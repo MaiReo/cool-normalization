@@ -12,10 +12,10 @@ using Castle.MicroKernel.Registration;
 namespace Cool.Normalization.Tests
 {
     [DependsOn(
-        typeof( NormalizationModule ),
+        typeof( NormalizationWrappingModule ),
         typeof( Abp.TestBase.AbpTestBaseModule )
         )]
-    public class NormalizationTestModule : AbpModule
+    public class NormalizationWrappingTestModule : AbpModule
     {
         public override void PreInitialize()
         {
@@ -38,7 +38,7 @@ namespace Cool.Normalization.Tests
         public override void Initialize()
         {
             
-            IocManager.RegisterAssemblyByConvention( typeof( NormalizationTestModule ).GetAssembly() );
+            IocManager.RegisterAssemblyByConvention( typeof( NormalizationWrappingTestModule ).GetAssembly() );
         }
         private void SetupInMemoryDb()
         {

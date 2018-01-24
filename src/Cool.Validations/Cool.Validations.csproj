@@ -10,12 +10,17 @@
     <PackageLicenseUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/LICENSE</PackageLicenseUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeSource>true</IncludeSource>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <NoWarn>1701;1702;1705;1591</NoWarn>
     <DocumentationFile>bin\Release\netstandard2.0\Cool.Validations.xml</DocumentationFile>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

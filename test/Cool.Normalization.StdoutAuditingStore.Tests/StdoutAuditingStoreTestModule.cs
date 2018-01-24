@@ -13,8 +13,8 @@ using Castle.Core.Logging;
 namespace Cool.Normalization.Tests
 {
     [DependsOn(
-        typeof(StdoutAuditingStoreModule),
-        typeof(NormalizationTestModule)
+        typeof( NormalizationWrappingTestModule ),
+        typeof( NormalizationStdoutAuditingStoreModule )
         )]
     public class StdoutAuditingStoreTestModule : AbpModule
     {
