@@ -109,43 +109,51 @@ namespace Cool.Normalization.Utilities
                     ?.OfType<ValidationAttribute>()
                     ?.Any() == true )
                 ?.ParameterType;
-            var firstMatchedProperty = firstMatchedParameterType?.GetProperty( firstPropertyName );
+            var firstMatchedProperty = firstMatchedParameterType
+                ?.GetProperty( firstPropertyName );
 
-            return GetCodesFromProperty( codes, firstMatchedParameterType, firstMatchedProperty );
+            return GetCodesFromProperty( codes, firstMatchedParameterType,
+                firstMatchedProperty, Codes.Level.ArgumentError );
         }
 
         private static IReadOnlyDictionary<CodePart, string>
         GetCodesFromProperty(IReadOnlyDictionary<CodePart, string> codes,
-            Type declaringType, PropertyInfo property)
+            Type declaringType, PropertyInfo property,
+            string defaultLevelCode = Codes.Level.Fatal)
         {
 
             //Order rule: Property > Declaring Type > Default
 
-            var propCodes = property?.GetCustomAttributes( true )?.OfType<ICodeAttribute>();
+            var propCodes = property?.GetCustomAttributes( true )
+                ?.OfType<ICodeAttribute>();
             var declaringTypeCodes = (declaringType ?? property?.DeclaringType)
                     ?.GetCustomAttributes( true )?.OfType<ICodeAttribute>();
 
             var allCodes = propCodes.ConcatSkipNullOrEmpty( declaringTypeCodes )
                     ?.ToList() ?? new List<ICodeAttribute>( 0 );
 
-            var levelCode = allCodes.GetPartCodeOrFallbackOrDefault( CodePart.Level,
+            var levelCode = allCodes.GetPartCodeOrFallbackOrDefault(
+                    CodePart.Level,
                     declaringTypeCodes
                     ?.Where( c => c?.CodePart == CodePart.Default )
-                    ?.FirstOrDefault( c => !string.IsNullOrWhiteSpace( c?.Code ) )
-                    , Codes.Level.Fatal );
+                    ?.FirstOrDefault(
+                        c => !string.IsNullOrWhiteSpace( c?.Code ) )
+                    , defaultLevelCode ?? Codes.Level.Fatal );
 
-            var detailCode = allCodes.GetPartCodeOrFallbackOrDefault( CodePart.Level,
+            var detailCode = allCodes.GetPartCodeOrFallbackOrDefault(
+                CodePart.Level,
                     propCodes
                     ?.Where( c => c?.CodePart == CodePart.Default )
-                    ?.FirstOrDefault( c => !string.IsNullOrWhiteSpace( c?.Code ) )
+                    ?.FirstOrDefault(
+                        c => !string.IsNullOrWhiteSpace( c?.Code ) )
                     , Codes.Detail.Default );
 
             return new Dictionary<CodePart, string>
             {
-                { CodePart.Level,levelCode },
-                { CodePart.Service,codes[CodePart.Service] },
-                { CodePart.Api,codes[CodePart.Api] },
-                { CodePart.Detail,detailCode },
+                { CodePart.Level, levelCode },
+                { CodePart.Service, codes[CodePart.Service] },
+                { CodePart.Api, codes[CodePart.Api] },
+                { CodePart.Detail, detailCode },
             };
         }
 

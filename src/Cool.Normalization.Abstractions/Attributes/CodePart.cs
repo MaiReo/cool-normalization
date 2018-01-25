@@ -37,11 +37,5 @@ namespace Cool.Normalization
         /// Detail part. This is the 4th part, the last part of a full code.
         /// </summary>
         Detail = 1 << 4,
-
-
-
-
-
-
     }
 }
