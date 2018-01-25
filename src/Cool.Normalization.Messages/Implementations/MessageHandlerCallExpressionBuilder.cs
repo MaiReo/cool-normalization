@@ -1,4 +1,5 @@
-﻿using MaiReo.Messages.Abstractions;
+﻿using Abp.Dependency;
+using MaiReo.Messages.Abstractions;
 using Newtonsoft.Json;
 using System;
 using System.Linq.Expressions;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Cool.Normalization.Messages
 {
-    public class MessageHandlerCallExpressionBuilder : IMessageHandlerCallExpressionBuilder
+    public class MessageHandlerCallExpressionBuilder : IMessageHandlerCallExpressionBuilder, ISingletonDependency
     {
         public Expression<Func<object, Task>> Build(Type messageType, IMessageWrapper wrapper)
         {

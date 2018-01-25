@@ -1,6 +1,7 @@
 ﻿using Abp;
 using Abp.Authorization;
 using Abp.Runtime.Session;
+using Cool.Normalization.Utilities;
 using System;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace Cool.Normalization.Permissions
 
         public IAbpSession AbpSession { get; set; }
 
-        public IRemoteProxyPermissionChecker Proxy { get; set; }
+        public IProxyPermissionChecker Proxy { get; set; }
 
 
         Task<bool> IPermissionChecker.IsGrantedAsync(string permissionName)

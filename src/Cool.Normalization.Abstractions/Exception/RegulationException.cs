@@ -23,12 +23,33 @@ namespace Cool.Normalization
         /// <param name="detailCode"><seealso cref="CodePart.Detail"/>详细Code</param>
         /// <param name="levelCode"><seealso cref="CodePart.Level"/>级别Code</param>
         /// <param name="message"><seealso cref="Exception.Message"/>错误信息</param>
-        public NormalizationException( string detailCode = Codes.Detail.Default,
+        public NormalizationException(string detailCode = Codes.Detail.Default,
             string levelCode = Codes.Level.Fatal,
-            string message = null ) : base( message ?? "User throws an exception." )
+            string message = null) : base( message ?? "User throws an exception." )
         {
             this.DetailCode = detailCode;
             this.LevelCode = levelCode;
         }
+
+        internal NormalizationException(
+            string detailCode = Codes.Detail.Default,
+            string levelCode = Codes.Level.Fatal,
+            string message = default( string ),
+            Exception innerException = default( Exception )) : base(
+                message ?? innerException?.Message 
+                ?? "User throws an exception.",
+                innerException )
+        {
+            this.DetailCode = detailCode;
+            this.LevelCode = levelCode;
+        }
+
+        public static NormalizationException WithCode(
+            string detailCode = Codes.Detail.Default,
+            string levelCode = Codes.Level.Fatal,
+            string message = default(string),
+            Exception innerException = default( Exception ))
+            => new NormalizationException( 
+                detailCode, levelCode, message, innerException );
     }
 }

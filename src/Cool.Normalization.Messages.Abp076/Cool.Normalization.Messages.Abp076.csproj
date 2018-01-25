@@ -3,8 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net452</TargetFramework>
     <RootNamespace>Cool.Normalization.Messages</RootNamespace>
-    <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>Cool.Normalization.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <Authors>MaiReo</Authors>
     <Company>HouseCool</Company>
@@ -15,7 +13,7 @@
     <Version>1.0.1</Version>
     <PackageProjectUrl>http://rd-server:8080/tfs/MicroserviceCollection/TestProject/_git/common.Normalization</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/LICENSE</PackageLicenseUrl>
-    <IncludeSource>true</IncludeSource>
+    <IncludeSymbols>true</IncludeSymbols>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

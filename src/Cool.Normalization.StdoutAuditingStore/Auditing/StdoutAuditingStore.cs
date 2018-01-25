@@ -1,5 +1,6 @@
 ﻿using Abp.Auditing;
 using Castle.Core.Logging;
+using Cool.Normalization.Configuration;
 using Cool.Normalization.Utilities;
 using System.Diagnostics;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cool.Normalization
+namespace Cool.Normalization.Auditing
 {
     public class StdoutAuditingStore : IAuditingStore
     {

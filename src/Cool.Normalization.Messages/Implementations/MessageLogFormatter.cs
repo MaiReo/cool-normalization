@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Extensions;
 using System.Reflection;
+using Abp.Dependency;
 using Cool.Normalization.Utilities;
 using MaiReo.Messages.Abstractions;
 
 namespace Cool.Normalization.Messages
 {
-    public class MessageLogFormatter : IMessageLogFormatter
+    public class MessageLogFormatter : IMessageLogFormatter,ISingletonDependency
     {
         public const string PREFIX = "MESSAGE-HANDLED";
 

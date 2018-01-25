@@ -4,7 +4,7 @@ using System;
 
 namespace Cool.Normalization.Messages
 {
-    public class MessageHandlerResolver : IMessageHandlerResolver
+    public class MessageHandlerResolver : IMessageHandlerResolver, ISingletonDependency
     {
         public object Resolve( IIocResolver iocResolver, Type messageType )
         {

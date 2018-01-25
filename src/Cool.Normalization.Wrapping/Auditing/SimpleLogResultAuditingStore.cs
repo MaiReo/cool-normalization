@@ -15,7 +15,7 @@ using Abp.Dependency;
 
 namespace Cool.Normalization.Auditing
 {
-    public class SimpleLogResultAuditingStore : IResultAuditingStore, ISingletonDependency
+    public class SimpleLogResultAuditingStore : IResultAuditingStore
     {
 
         public SimpleLogResultAuditingStore()
@@ -26,7 +26,7 @@ namespace Cool.Normalization.Auditing
 
         public ILogger Logger { get; set; }
 
-        public static SimpleLogResultAuditingStore Instance { get; internal set; }
+        public static SimpleLogResultAuditingStore Instance { get; private set; }
 
         public void Save( NormalizationResponseBase normalizationResponse )
         {

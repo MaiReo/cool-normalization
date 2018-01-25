@@ -1,8 +1,4 @@
-﻿using Abp;
-using Abp.Runtime.Session;
-using Cool.Normalization;
-
-namespace Abp.Runtime.Session
+﻿namespace Abp.Runtime.Session
 {
 
     public static class AbpSessionExtensions
@@ -11,7 +7,8 @@ namespace Abp.Runtime.Session
         {
             if (abpSession is IMayHaveAccountIdAbpSession session)
             {
-                return session.AccountId ?? throw new AbpException("There is no AccountId!");
+                return session.AccountId 
+                    ?? throw new AbpException("There is no AccountId!");
             }
             throw new AbpException( "There is no AccountId!" );
         }
@@ -20,7 +17,8 @@ namespace Abp.Runtime.Session
         {
             if (abpSession is IMayHaveAbpUserIdAbpSession session)
             {
-                return session.AbpUserId ?? throw new AbpException( "There is no AbpUserId!" );
+                return session.AbpUserId 
+                    ?? throw new AbpException( "There is no AbpUserId!" );
             }
             throw new AbpException( "There is no AbpUserId!" );
         }

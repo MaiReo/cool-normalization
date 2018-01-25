@@ -1,4 +1,5 @@
-﻿using Cool.Normalization.Utilities;
+﻿using Abp.Dependency;
+using Cool.Normalization.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace Cool.Normalization.Messages
 {
-    public class MessageHandlerCodeResolver : IMessageHandlerCodeResolver
+    public class MessageHandlerCodeResolver : IMessageHandlerCodeResolver, ISingletonDependency
     {
         public IReadOnlyDictionary<CodePart, string> ResolveCode(
             MethodInfo ifaceMethod,

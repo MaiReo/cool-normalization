@@ -1,8 +1,5 @@
 ﻿using Cool.Normalization.Client;
-using System;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
 
 namespace Castle.MicroKernel.Registration
 {

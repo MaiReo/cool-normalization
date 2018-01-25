@@ -21,7 +21,7 @@ namespace normalizationtests.Application
             return new { AccountId = AbpSession.GetAccountId() };
         }
 
-        [AbpAuthorize( "SomePerm" )]
+        [AbpAuthorize( "All" )]
         public dynamic IdentityWithPermission()
         {
             return new { AccountId = AbpSession.GetAccountId() };
@@ -36,7 +36,21 @@ namespace normalizationtests.Application
         [Code( "03" )]
         public Task ChangePassword(ChangePasswordInput input)
         {
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+
+                throw ex.WithCode("99");
+            }
             return Task.CompletedTask;
+        }
+
+        public async  Task<bool> TestAbpSession()
+        {
+            return AbpSession.GetType().Name == "AccessTokenAbpSession";
         }
     }
 

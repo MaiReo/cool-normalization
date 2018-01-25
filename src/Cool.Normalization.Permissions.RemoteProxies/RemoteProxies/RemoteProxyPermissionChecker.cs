@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using cool.permission.client.Model;
 using Cool.Normalization.Utilities;
+using Abp.Dependency;
 
 namespace Cool.Normalization.Permissions
 {
-    public class RemoteProxyPermissionChecker : IRemoteProxyPermissionChecker
+    public class RemoteProxyPermissionChecker : IProxyPermissionChecker, ISingletonDependency
     {
         private readonly IPermissionApi _permissionApi;
 

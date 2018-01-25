@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Cool.Normalization.Messages
 {
-    public class MessageHandlerBinder : IMessageHandlerBinder
+    public class MessageHandlerBinder : IMessageHandlerBinder, ISingletonDependency
     {
-        public IMessageResolver MessageResolver { get; set; }
+        public NullMessageResolver MessageResolver { get; set; }
 
-        public IMessageHandlerInvoker MessageHandlerInvoker { get; set; }
+        public NullMessageHandlerInvoker MessageHandlerInvoker { get; set; }
 
         public bool Binding(IIocResolver iocResolver, IMessageConfiguration configuration)
         {

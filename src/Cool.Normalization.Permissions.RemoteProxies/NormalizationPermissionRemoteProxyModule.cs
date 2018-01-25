@@ -22,16 +22,17 @@ namespace Cool.Normalization
     public class NormalizationPermissionRemoteProxyModule : AbpModule
     {
 
-        public override void PreInitialize()
-        {
-            Configuration.ReplaceService<IPermissionRegister, RemoteProxyPermissionRegister>();
-            IocManager.Register<IRemoteProxyPermissionChecker, RemoteProxyPermissionChecker>();
-        }
-
         public override void Initialize()
         {
-            IocManager.RegisterAssemblyByConvention( typeof( NormalizationPermissionRemoteProxyModule ).Assembly );
-            IocManager.RegisterAssemblyByConvention( typeof( cool.permission.client.Client.Configuration ).Assembly );
+            if (!Configuration.Modules.Normalization().IsPermissionEnabled)
+            {
+                return;
+            }
+            IocManager.RegisterAssemblyByConvention(
+                typeof( NormalizationPermissionRemoteProxyModule ).Assembly );
+            IocManager.RegisterAssemblyByConvention(
+                typeof( cool.permission.client.Client.Configuration ).Assembly );
         }
+
     }
 }

@@ -3,10 +3,12 @@ using Abp.Modules;
 using MaiReo.Messages.Abstractions;
 using System.Net;
 using System;
+using Cool.Normalization.Messages;
 
-namespace Cool.Normalization.Messages
+namespace Abp.Modules
 {
     [DependsOn(
+        typeof( NormalizationAbstractionModule ),
         typeof( MessageAbstractionsModule ),
         typeof( MessagePublisherModule ),
         typeof( MessageReceiverModule )
@@ -19,6 +21,11 @@ namespace Cool.Normalization.Messages
         {
             //Prevent auto starting for receiver.
             Configuration.Modules.MessageReceiver().AutoStart = false;
+
+            if (!Configuration.Modules.Normalization().IsMessageEnabled)
+            {
+                return;
+            }
             AddMissingConfiguration( IocManager.Resolve<IMessageConfiguration>() );
         }
 
@@ -35,17 +42,29 @@ namespace Cool.Normalization.Messages
 
         public override void PostInitialize()
         {
+            IocManager.RegisterIfNot<NullMessageResolver,
+                NullMessageResolver>();
+            IocManager.RegisterIfNot<NullMessageHandlerResolver,
+                NullMessageHandlerResolver>();
+            IocManager.RegisterIfNot<NullMessageHandlerCallExpressionBuilder,
+                NullMessageHandlerCallExpressionBuilder>();
+            IocManager.RegisterIfNot<IMessageHandlerCodeResolver,
+                NullMessageHandlerCodeResolver>();
+            IocManager.RegisterIfNot<IMessageLogFormatter,
+                NullMessageLogFormatter>();
+            IocManager.RegisterIfNot<NullMessageHandlerInvoker,
+                NullMessageHandlerInvoker>();
+            IocManager.RegisterIfNot<IMessageHandlerBinder,
+                NullMessageHandlerBinder>();
+
+            if (!Configuration.Modules.Normalization().IsMessageEnabled)
+            {
+                return;
+            }
+
             var messageConfig = Configuration.Modules.Messages();
             //TODO:及时更新kafka地址并打包发布
             messageConfig.BrokerAddress = "test.baishijiaju.com";
-
-            RegisterIfNot<IMessageResolver, MessageResolver>();
-            RegisterIfNot<IMessageHandlerResolver, MessageHandlerResolver>();
-            RegisterIfNot<IMessageHandlerCallExpressionBuilder, MessageHandlerCallExpressionBuilder>();
-            RegisterIfNot<IMessageHandlerCodeResolver, MessageHandlerCodeResolver>();
-            RegisterIfNot<IMessageLogFormatter, MessageLogFormatter>();
-            RegisterIfNot<IMessageHandlerInvoker, MessageHandlerInvoker>();
-            RegisterIfNot<IMessageHandlerBinder, MessageHandlerBinder>();
 
             using (var messageBinder = IocManager.ResolveAsDisposable<IMessageHandlerBinder>())
             {
@@ -56,19 +75,6 @@ namespace Cool.Normalization.Messages
                     _receiver.Connect();
                 }
             }
-        }
-
-
-        private void RegisterIfNot<IService, IImpl>(
-            DependencyLifeStyle lifeStyle = DependencyLifeStyle.Singleton)
-            where IService : class
-            where IImpl : class, IService
-        {
-            if (IocManager.IsRegistered<IService>())
-            {
-                return;
-            }
-            IocManager.Register<IService, IImpl>( lifeStyle );
         }
 
 

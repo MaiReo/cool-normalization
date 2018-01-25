@@ -11,7 +11,7 @@ using Cool.Normalization.Auditing;
 
 namespace Cool.Normalization.Wrapping
 {
-    public class NormalizationActionResultWrapperFactory : IAbpActionResultWrapperFactory, ITransientDependency
+    public class NormalizationActionResultWrapperFactory : IAbpActionResultWrapperFactory
     {
         private readonly IResultAuditingHelper _auditingResultHelper;
 

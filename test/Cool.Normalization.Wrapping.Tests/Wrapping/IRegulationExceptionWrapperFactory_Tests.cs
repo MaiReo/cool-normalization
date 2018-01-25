@@ -1,4 +1,5 @@
-﻿using Cool.Normalization.Wrapping;
+﻿using Cool.Normalization.Filters;
+using Cool.Normalization.Wrapping;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -13,9 +14,12 @@ namespace Cool.Normalization.Tests
     public class InormalizationExceptionWrapperFactory_Tests : NormalizationTestBase
     {
         public readonly INormalizationExceptionWrapperFactory _normalizationExceptionWrapperFactory;
+
+        public readonly IExceptionFilter _exceptionFilter;
         public InormalizationExceptionWrapperFactory_Tests()
         {
             _normalizationExceptionWrapperFactory = Resolve<INormalizationExceptionWrapperFactory>();
+            _exceptionFilter = Resolve<IExceptionFilter>();
         }
 
         [Fact]
@@ -25,6 +29,12 @@ namespace Cool.Normalization.Tests
             var wrapper = _normalizationExceptionWrapperFactory.CreateFor( errorContext );
             wrapper.ShouldNotBeNull();
             wrapper.ShouldBeOfType<NormalizationExceptionWrapper>();
+        }
+
+        [Fact]
+        public void IExceptionFilter_ShouldBe_NormalizationExceptionFilter()
+        {
+            _exceptionFilter.ShouldBeOfType<NormalizationExceptionFilter>();
         }
 
         private ExceptionContext CreateContext()
@@ -48,5 +58,6 @@ namespace Cool.Normalization.Tests
             };
             return errorContext;
         }
+
     }
 }

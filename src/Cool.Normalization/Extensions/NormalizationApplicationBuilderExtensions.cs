@@ -1,13 +1,18 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Microsoft.AspNetCore.Builder
 {
     public static class NormalizationApplicationBuilderExtensions
     {
-        public static IApplicationBuilder UseNormalization(this IApplicationBuilder app,
+        /// <summary>
+        /// 配置使用Cool.Normalization框架
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="useAuth">使用验证(默认不使用)</param>
+        /// <param name="useSwagger">添加swagger(默认)</param>
+        /// <returns></returns>
+        public static IApplicationBuilder UseNormalization(
+            this IApplicationBuilder app,
             bool? useAuth = default,
             bool? useSwagger = default)
         {
@@ -17,7 +22,8 @@ namespace Microsoft.AspNetCore.Builder
             }
             if (useSwagger != false)
             {
-                app.UseSwaggerEtc( NormalizationServiceCollectionExtensions.DisplayName );
+                app.UseSwaggerEtc(
+                    NormalizationServiceCollectionExtensions.FriendlyName );
             }
             return app;
         }

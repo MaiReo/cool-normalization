@@ -13,7 +13,7 @@ using System.Reflection;
 
 namespace Cool.Normalization.Filters
 {
-    public class NormalizationExceptionFilter : IExceptionFilter, IFilterMetadata, ITransientDependency
+    public class NormalizationExceptionFilter : IExceptionFilter, IFilterMetadata
     {
         public ILogger Logger { get; set; }
 
@@ -25,7 +25,7 @@ namespace Cool.Normalization.Filters
 
         private readonly IAbpAspNetCoreConfiguration _configuration;
 
-        
+
 
         public NormalizationExceptionFilter(IAbpAspNetCoreConfiguration configuration,
             INormalizationConfiguration normalizationConfiguration)
@@ -38,14 +38,14 @@ namespace Cool.Normalization.Filters
         }
 
 
-        private static TAttribute GetSingleAttributeOfMemberOrDeclaringTypeOrDefault<TAttribute>( MemberInfo  memberInfo, TAttribute defaultAttribute ) where TAttribute : Attribute
+        private static TAttribute GetSingleAttributeOfMemberOrDeclaringTypeOrDefault<TAttribute>(MemberInfo memberInfo, TAttribute defaultAttribute) where TAttribute : Attribute
         {
             return memberInfo.GetCustomAttributes( true ).OfType<TAttribute>().FirstOrDefault()
                     ?? memberInfo.DeclaringType?.GetTypeInfo().GetCustomAttributes( true ).OfType<TAttribute>().FirstOrDefault()
                     ?? defaultAttribute;
         }
-        
-        public void OnException( ExceptionContext context )
+
+        public void OnException(ExceptionContext context)
         {
 
             if (!context.ActionDescriptor.IsControllerAction())
@@ -68,7 +68,7 @@ namespace Cool.Normalization.Filters
                 NormalizationExceptionWrapperFactory.CreateFor( context ).Wrap( context );
             }
 
-            
+
         }
     }
 }

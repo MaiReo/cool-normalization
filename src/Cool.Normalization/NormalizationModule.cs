@@ -1,10 +1,11 @@
-﻿using Abp.AspNetCore;
-using Abp.Configuration.Startup;
-using Abp.Modules;
-using Cool.Normalization.Permissions;
+﻿using Abp.Modules;
 
 namespace Cool.Normalization
 {
+    /// <summary>
+    /// 依赖了其他Cool.Normalization组件模块的模块
+    /// 通常只需要依赖此模块。
+    /// </summary>
     [DependsOn(
         typeof( NormalizationWrappingModule ),
         typeof( NormalizationStdoutAuditingStoreModule ),
@@ -12,9 +13,10 @@ namespace Cool.Normalization
         )]
     public class NormalizationModule : AbpModule
     {
-        public override void PreInitialize()
+        public override void Initialize()
         {
-            Configuration.ReplaceService<IAssemblyNameResolver, ConfiguableAssemblyNameResolver>();
+            IocManager.RegisterAssemblyByConvention(
+                typeof( NormalizationModule ).Assembly );
         }
     }
 }

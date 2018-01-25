@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace Cool.Normalization.Messages
 {
-    public class MessageResolver : IMessageResolver
+    public class MessageResolver : IMessageResolver, ISingletonDependency
     {
         public IReadOnlyDictionary<string, Type> HasHandlerMessages(
             IIocResolver iocResolver )

@@ -1,4 +1,6 @@
 ﻿using Abp.Dependency;
+using Cool.Normalization.Configuration;
+using Cool.Normalization.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +11,20 @@ namespace Cool.Normalization.Permissions
 {
     public class PermissionManager : IPermissionManager, ISingletonDependency
     {
+        private readonly INormalizationConfiguration _configuration;
         private readonly IAssemblyNameResolver _assemblyNameResolver;
         private readonly IPermissionProvider _permissionProvider;
         private readonly IPermissionRegister _permissionRegister;
 
         public PermissionManager(
+            INormalizationConfiguration configuration,
             IAssemblyNameResolver assemblyNameResolver,
             IPermissionProvider permissionProvider,
             IPermissionRegister permissionRegister
             )
         {
+            this._configuration = configuration;
+
             this._assemblyNameResolver = assemblyNameResolver;
             this._permissionProvider = permissionProvider;
             this._permissionRegister = permissionRegister;
@@ -26,6 +32,10 @@ namespace Cool.Normalization.Permissions
 
         public void Register()
         {
+            if (!_configuration.IsPermissionEnabled)
+            {
+                return;
+            }
             var name = _assemblyNameResolver.ResolveEntryName( Assembly.GetEntryAssembly() );
             var providerType = _permissionProvider.GetType();
             var permissions = RecursiveGetAllPermissions( providerType );

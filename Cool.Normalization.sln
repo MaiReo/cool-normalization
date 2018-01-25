@@ -50,6 +50,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cool.Normalization", "src\C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cool.Normalization.SwaggerIntegration", "src\Cool.Normalization.SwaggerIntegration\Cool.Normalization.SwaggerIntegration.csproj", "{A49ACB4E-DC34-4629-9A68-AD3679F405A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cool.Normalization.Abstrations.AbpIntegration", "src\Cool.Normalization.Abstrations.AbpIntegration\Cool.Normalization.Abstrations.AbpIntegration.csproj", "{4826D4BA-E0B5-44A1-8E97-B3FBBD960204}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -124,6 +126,10 @@ Global
 		{A49ACB4E-DC34-4629-9A68-AD3679F405A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A49ACB4E-DC34-4629-9A68-AD3679F405A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A49ACB4E-DC34-4629-9A68-AD3679F405A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4826D4BA-E0B5-44A1-8E97-B3FBBD960204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4826D4BA-E0B5-44A1-8E97-B3FBBD960204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4826D4BA-E0B5-44A1-8E97-B3FBBD960204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4826D4BA-E0B5-44A1-8E97-B3FBBD960204}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -146,6 +152,7 @@ Global
 		{CE72DF24-D4E6-4FE9-8EA2-A6393327E62D} = {66D39592-D4D2-45A0-88F5-0C11E2C05B96}
 		{80E43D58-ABE3-43BF-8759-C5FE387A8D73} = {66D39592-D4D2-45A0-88F5-0C11E2C05B96}
 		{A49ACB4E-DC34-4629-9A68-AD3679F405A1} = {66D39592-D4D2-45A0-88F5-0C11E2C05B96}
+		{4826D4BA-E0B5-44A1-8E97-B3FBBD960204} = {66D39592-D4D2-45A0-88F5-0C11E2C05B96}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {12BBE57E-F306-46C8-9C15-B98EA00DC44E}

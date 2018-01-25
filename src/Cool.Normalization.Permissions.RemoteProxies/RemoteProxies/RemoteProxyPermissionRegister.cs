@@ -4,13 +4,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using Abp.Authorization;
+using Abp.Dependency;
 using Abp.Localization;
 using cool.permission.client.Api;
 using cool.permission.client.Model;
 
 namespace Cool.Normalization.Permissions
 {
-    public class RemoteProxyPermissionRegister : IPermissionRegister
+    public class RemoteProxyPermissionRegister : IPermissionRegister, ISingletonDependency
     {
         private readonly IPermissionApi _permissionApi;
 
@@ -31,7 +32,8 @@ namespace Cool.Normalization.Permissions
             }
             catch (Exception ex) when (!(ex is NormalizationException))
             {
-                throw new NormalizationException( "01", message: ex.Message.Replace( "\r", string.Empty ).Replace( "\n", string.Empty ) );
+                throw new NormalizationException( "01", 
+                    message: ex.Message.Replace( "\r", string.Empty ).Replace( "\n", string.Empty ) );
             }
         }
 
@@ -42,14 +44,19 @@ namespace Cool.Normalization.Permissions
             int level = 0)
         {
             var list = new List<PermissionDto>();
-            var dotCount = parent?.Name?.Count( c => c == '.' ) ?? 0;
             var children = permissions.Where(
-                p => parent == default( CoolPermission )
-                ? (!p.Name.Contains( "." ))
-                : p.Name.StartsWith( parent.Name + "." ) && p.Name.Count( c => c == '.' ) == dotCount + 1 ).ToList();
-            foreach (var child in children)
+                    p => p.Name.Count( c => c == '.' ) == level );
+
+            if (parent != default( CoolPermission ))
             {
-                var dto = new PermissionDto( child.Name, child.DisplayName, level );
+                children = children.Where(
+                    c => c.Name.StartsWith( parent.Name + "." ) );
+            }
+            var childrenList = children.ToList();
+            foreach (var child in childrenList)
+            {
+                var dto = new PermissionDto( child.Name,
+                    child.DisplayName, level );
                 list.Add( dto );
                 list.AddRange( MapToDto( permissions, child, level + 1 ) );
             }
