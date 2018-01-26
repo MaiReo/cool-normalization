@@ -9,7 +9,7 @@
     <PackageProjectUrl>http://rd-server:8080/tfs/MicroserviceCollection/TestProject/_git/common.Normalization</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/LICENSE</PackageLicenseUrl>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>2.2.2</Version>
+    <Version>2.2.3</Version>
     <IncludeSymbols>true</IncludeSymbols>
   </PropertyGroup>
 
@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Cool.Normalization.Abstrations.AbpIntegration\Cool.Normalization.Abstrations.AbpIntegration.csproj" />
+    <ProjectReference Include="..\Cool.Normalization.Abstractions.AbpIntegration\Cool.Normalization.Abstractions.AbpIntegration.csproj" />
   </ItemGroup>
 
 </Project>

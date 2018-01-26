@@ -50,7 +50,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cool.Normalization", "src\C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cool.Normalization.SwaggerIntegration", "src\Cool.Normalization.SwaggerIntegration\Cool.Normalization.SwaggerIntegration.csproj", "{A49ACB4E-DC34-4629-9A68-AD3679F405A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cool.Normalization.Abstrations.AbpIntegration", "src\Cool.Normalization.Abstrations.AbpIntegration\Cool.Normalization.Abstrations.AbpIntegration.csproj", "{4826D4BA-E0B5-44A1-8E97-B3FBBD960204}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cool.Normalization.Abstractions.AbpIntegration", "src\Cool.Normalization.Abstractions.AbpIntegration\Cool.Normalization.Abstractions.AbpIntegration.csproj", "{4826D4BA-E0B5-44A1-8E97-B3FBBD960204}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

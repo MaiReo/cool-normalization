@@ -15,7 +15,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
     <NoWarn>1701;1702;1705;1591</NoWarn>
-    <DocumentationFile>bin\Release\netstandard2.0\Cool.Normalization.Abstrations.AbpIntegration.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netstandard2.0\Cool.Normalization.Abstractions.AbpIntegration.xml</DocumentationFile>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 

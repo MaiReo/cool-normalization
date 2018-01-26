@@ -13,7 +13,7 @@
     <PackageLicenseUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/LICENSE</PackageLicenseUrl>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
-    <Version>1.1.2</Version>
+    <Version>1.1.3</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -32,7 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Cool.Normalization.Abstractions\Cool.Normalization.Abstractions.csproj" />
-    <ProjectReference Include="..\Cool.Normalization.Abstrations.AbpIntegration\Cool.Normalization.Abstrations.AbpIntegration.csproj" />
+    <ProjectReference Include="..\Cool.Normalization.Abstractions.AbpIntegration\Cool.Normalization.Abstractions.AbpIntegration.csproj" />
   </ItemGroup>
 
 </Project>
