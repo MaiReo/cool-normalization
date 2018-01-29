@@ -1,6 +1,5 @@
-﻿using Abp.Modules;
-
-namespace Cool.Normalization
+﻿
+namespace Abp.Modules
 {
     /// <summary>
     /// 依赖了其他Cool.Normalization组件模块的模块

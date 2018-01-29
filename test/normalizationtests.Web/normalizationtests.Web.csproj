@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Cool.Normalization\Cool.Normalization.csproj" />
+    <ProjectReference Include="..\..\src\Cool.Validations\Cool.Validations.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\" />

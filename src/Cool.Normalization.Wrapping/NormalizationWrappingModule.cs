@@ -11,7 +11,7 @@ using Cool.Normalization.Filters;
 using Cool.Normalization.Wrapping;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Cool.Normalization
+namespace Abp.Modules
 {
     [DependsOn( typeof( AbpAspNetCoreModule ),
         typeof( NormalizationAbstractionModule ) )]
