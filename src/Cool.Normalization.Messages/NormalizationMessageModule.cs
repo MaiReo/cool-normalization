@@ -64,7 +64,7 @@ namespace Abp.Modules
 
             var messageConfig = Configuration.Modules.Messages();
             //TODO:及时更新kafka地址并打包发布
-            messageConfig.BrokerAddress = "test.baishijiaju.com";
+            messageConfig.BrokerAddress = "msg.housecool.com";
 
             using (var messageBinder = IocManager.ResolveAsDisposable<IMessageHandlerBinder>())
             {

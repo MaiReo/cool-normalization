@@ -28,7 +28,7 @@ namespace Cool.Normalization.Messages
 
             var messageConfiguration = IocManager.Resolve<IMessageConfiguration>();
 
-            messageConfiguration.BrokerAddress = "test.baishijiaju.com";
+            messageConfiguration.BrokerAddress = "msg.housecool.com";
             messageConfiguration.BrokerPort = MessageConfiguration.Default.BrokerPort;
 
             var messagePublisherWrapper = _messagePublisherWrapper = IocManager.Resolve<IMessagePublisherWrapper>();
