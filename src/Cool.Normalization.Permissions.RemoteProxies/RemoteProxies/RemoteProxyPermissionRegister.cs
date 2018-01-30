@@ -39,26 +39,16 @@ namespace Cool.Normalization.Permissions
 
 
         public List<PermissionDto> MapToDto(
-            IEnumerable<CoolPermission> permissions,
-            CoolPermission parent = default( CoolPermission ),
-            int level = 0)
+            IEnumerable<CoolPermission> permissions)
         {
             var list = new List<PermissionDto>();
-            var children = permissions.Where(
-                    p => p.Name.Count( c => c == '.' ) == level );
 
-            if (parent != default( CoolPermission ))
+            foreach (var per in permissions)
             {
-                children = children.Where(
-                    c => c.Name.StartsWith( parent.Name + "." ) );
-            }
-            var childrenList = children.ToList();
-            foreach (var child in childrenList)
-            {
-                var dto = new PermissionDto( child.Name,
-                    child.DisplayName, level );
-                list.Add( dto );
-                list.AddRange( MapToDto( permissions, child, level + 1 ) );
+                var level = per.Name.Count(c => c == '.');
+                var dto = new PermissionDto(per.Name,
+                    per.DisplayName, level);
+                list.Add(dto);
             }
             return list;
         }
