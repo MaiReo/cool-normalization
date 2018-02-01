@@ -17,6 +17,14 @@ namespace Cool.Normalization.Messages
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention( typeof( NormalizationMessageModule ).Assembly );
+
+            var messageConfiguration = IocManager.Resolve<IMessageConfiguration>();
+            messageConfiguration.BrokerAddress = "msg.housecool.com";
+            if (messageConfiguration.BrokerPort > 65535
+                || messageConfiguration.BrokerPort < 1)
+            {
+                messageConfiguration.BrokerPort = MessageConfiguration.Default.BrokerPort;
+            }
         }
 
         public override void PostInitialize()
@@ -25,11 +33,6 @@ namespace Cool.Normalization.Messages
             RegisterIfNot<IKafkaProducerBuilder, KafkaProducerBuilder>();
             RegisterIfNot<IMessagePublisherWrapper, KafkaProducerWrapper>();
             RegisterIfNot<IMessagePublisher, MessagePublisher>();
-
-            var messageConfiguration = IocManager.Resolve<IMessageConfiguration>();
-
-            messageConfiguration.BrokerAddress = "msg.housecool.com";
-            messageConfiguration.BrokerPort = MessageConfiguration.Default.BrokerPort;
 
             var messagePublisherWrapper = _messagePublisherWrapper = IocManager.Resolve<IMessagePublisherWrapper>();
 

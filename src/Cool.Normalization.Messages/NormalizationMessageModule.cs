@@ -27,12 +27,14 @@ namespace Abp.Modules
                 return;
             }
             AddMissingConfiguration( IocManager.Resolve<IMessageConfiguration>() );
+            IocManager.RegisterAssemblyByConvention( typeof( NormalizationMessageModule ).Assembly );
         }
 
         private void AddMissingConfiguration(IMessageConfiguration messageConfiguration)
         {
-            messageConfiguration.BrokerAddress = messageConfiguration.BrokerAddress
-                ?? MessageConfiguration.Default.BrokerAddress;
+            //TODO:及时更新kafka地址并打包发布
+            messageConfiguration.BrokerAddress = messageConfiguration.BrokerAddress ??
+                "msg.housecool.com";
             if (messageConfiguration.BrokerPort > 65535
                 || messageConfiguration.BrokerPort < 1)
             {
@@ -42,17 +44,17 @@ namespace Abp.Modules
 
         public override void PostInitialize()
         {
-            IocManager.RegisterIfNot<NullMessageResolver,
+            IocManager.RegisterIfNot<IMessageResolver,
                 NullMessageResolver>();
-            IocManager.RegisterIfNot<NullMessageHandlerResolver,
+            IocManager.RegisterIfNot<IMessageHandlerResolver,
                 NullMessageHandlerResolver>();
-            IocManager.RegisterIfNot<NullMessageHandlerCallExpressionBuilder,
+            IocManager.RegisterIfNot<IMessageHandlerCallExpressionBuilder,
                 NullMessageHandlerCallExpressionBuilder>();
             IocManager.RegisterIfNot<IMessageHandlerCodeResolver,
                 NullMessageHandlerCodeResolver>();
             IocManager.RegisterIfNot<IMessageLogFormatter,
                 NullMessageLogFormatter>();
-            IocManager.RegisterIfNot<NullMessageHandlerInvoker,
+            IocManager.RegisterIfNot<IMessageHandlerInvoker,
                 NullMessageHandlerInvoker>();
             IocManager.RegisterIfNot<IMessageHandlerBinder,
                 NullMessageHandlerBinder>();
@@ -62,9 +64,7 @@ namespace Abp.Modules
                 return;
             }
 
-            var messageConfig = Configuration.Modules.Messages();
-            //TODO:及时更新kafka地址并打包发布
-            messageConfig.BrokerAddress = "msg.housecool.com";
+            var messageConfig = IocManager.Resolve<IMessageConfiguration>();
 
             using (var messageBinder = IocManager.ResolveAsDisposable<IMessageHandlerBinder>())
             {

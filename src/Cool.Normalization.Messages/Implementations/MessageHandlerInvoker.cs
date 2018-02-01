@@ -16,8 +16,8 @@ namespace Cool.Normalization.Messages
 {
     public class MessageHandlerInvoker : IMessageHandlerInvoker, ISingletonDependency
     {
-        public NullMessageHandlerResolver MessageHandlerResolver { get; set; }
-        public NullMessageHandlerCallExpressionBuilder MessageHandlerBuilder { get; set; }
+        public IMessageHandlerResolver MessageHandlerResolver { get; set; }
+        public IMessageHandlerCallExpressionBuilder MessageHandlerBuilder { get; set; }
         public IMessageLogFormatter MessageLogFormatter { get; set; }
         public IIocResolver IocResolver { get; set; }
         public ILogger Logger { get; set; }
