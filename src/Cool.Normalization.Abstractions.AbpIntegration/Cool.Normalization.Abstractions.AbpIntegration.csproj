@@ -10,18 +10,15 @@
     <PackageIconUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/cool-icon.ico</PackageIconUrl>
     <PackageProjectUrl>http://rd-server:8080/tfs/microservicecollection/TestProject/_git/common.Normalization</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/LICENSE</PackageLicenseUrl>
-    <IncludeSymbols>true</IncludeSymbols>
+    <IncludeSymbols>true</IncludeSymbols><LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
     <NoWarn>1701;1702;1705;1591</NoWarn>
     <DocumentationFile>bin\Release\netstandard2.0\Cool.Normalization.Abstractions.AbpIntegration.xml</DocumentationFile>
-    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
+
 
   <ItemGroup Condition="'$(targetFramework)'=='netstandard2.0'">
     <PackageReference Include="Abp" Version="3.3.0" />
@@ -34,7 +31,6 @@
   <ItemGroup Condition="'$(targetFramework)'=='net452'">
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.ComponentModel.Annotations" />
