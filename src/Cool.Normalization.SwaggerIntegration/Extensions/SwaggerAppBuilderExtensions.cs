@@ -1,4 +1,12 @@
-﻿using System;
+﻿#region Version=1.0.0
+/*
+ * 将Swagger加入到AspNet管道的简化同时处理一些小问题
+ *
+ * 使得可以按照来源url输出swagger定义
+ *
+ */
+#endregion Version
+using System;
 using System.Collections.Generic;
 
 namespace Microsoft.AspNetCore.Builder

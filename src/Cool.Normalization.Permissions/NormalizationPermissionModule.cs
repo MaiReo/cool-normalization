@@ -1,4 +1,13 @@
-﻿using Abp.Configuration.Startup;
+﻿#region Version=1.0.6
+/*
+ * NormalizationPermissionModule
+ * 权限模块。
+ * 
+ * 
+ * 
+ */
+#endregion Version
+using Abp.Configuration.Startup;
 using Abp.Dependency;
 using Abp.Runtime.Session;
 using Cool.Normalization.Permissions;
@@ -19,12 +28,14 @@ namespace Abp.Modules
 
         public override void Initialize()
         {
+            
+            if (!Configuration.Modules.Normalization().IsPermissionEnabled)
+            {
+                return;
+            }
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             IocManager.RegisterAssemblyByConvention(
                 typeof( NormalizationPermissionModule ).Assembly );
-            if (Configuration.Modules.Normalization().IsPermissionEnabled)
-            {
-                JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-            }
         }
 
         public override void PostInitialize()

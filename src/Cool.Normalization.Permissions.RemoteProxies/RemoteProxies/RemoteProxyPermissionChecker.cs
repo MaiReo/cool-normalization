@@ -1,4 +1,27 @@
-﻿using cool.permission.client.Api;
+﻿#region Version=1.0.4
+/**
+* 与权限服务通信的鉴权实现类。
+* 
+* _permissionApi
+* 只读字段。在构造函数中被赋值。一个指向与权限服务通信的实例对象的引用。
+* 
+* RemoteProxyPermissionChecker(IPermissionApi)
+* 构造函数。依赖一个与权限服务通信的通信的对象并保存到成员_permissionApi。
+*
+* Task<bool> IsGrantedAsync(long, string, string)
+* 鉴权定义。详见IProxyPermissionChecker接口
+* 将参数传递给权限服务等待处理结果。
+* 权限鉴定成功时返回true。
+* 其他情况则引发类型为NormalizationException的异常。
+* 可能由此方法引发的Code值
+*   未授权：“03{SERVICE_CODE}{API_CODE}01”
+*   权限服务返回非成功：“03{SERVICE_CODE}{API_CODE}02”
+*   通信异常：“03{SERVICE_CODE}{API_CODE}03”
+*   程序异常：“99{SERVICE_CODE}{API_CODE}01”
+* 
+*/
+#endregion Version
+using cool.permission.client.Api;
 using System;
 using System.Collections.Generic;
 using System.Text;
