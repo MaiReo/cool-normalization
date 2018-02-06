@@ -1,4 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc.Controllers;
+﻿#region Version=1.0.0
+/*
+ * Swagger生成定义时，去除名称前缀和动作后缀
+ * 
+ * 可缩短通过Swagger-Codegen进行生成调用程序的方法名
+ *
+ */
+#endregion Version
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 

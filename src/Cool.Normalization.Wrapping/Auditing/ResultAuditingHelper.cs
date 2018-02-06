@@ -19,6 +19,13 @@
  */
 #endregion
 
+#region Version=1.1.0
+/**
+ * ShouldSaveAudit(MethodInfo, bool)
+ * 增加了对INormalizationConfiguration.IsStandardOutputAuditLogEnabled的判断
+*/
+#endregion Version
+
 using Abp.Dependency;
 using Abp.Domain.Uow;
 using Cool.Normalization.Configuration;
@@ -67,6 +74,8 @@ namespace Cool.Normalization.Auditing
 
         public bool ShouldSaveAudit( MethodInfo methodInfo, bool defaultValue = true )
         {
+            if (!_normalizationConfiguration.IsStandardOutputAuditLogEnabled)
+                return false;
             if (methodInfo == null)
                 return false;
 

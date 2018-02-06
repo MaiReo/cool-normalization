@@ -13,6 +13,9 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Abp.Modules
 {
+    /// <summary>
+    /// 输入输出包装和审计模块
+    /// </summary>
     [DependsOn( typeof( AbpAspNetCoreModule ),
         typeof( NormalizationAbstractionModule ) )]
     public class NormalizationWrappingModule : AbpModule

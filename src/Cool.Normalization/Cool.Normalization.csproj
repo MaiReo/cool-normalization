@@ -6,7 +6,7 @@
     <Company>HouseCool</Company>
     <Authors>MaiReo</Authors>
     <Copyright>HouseCool</Copyright>
-    <Version>1.1.4</Version>
+    <Version>1.1.5</Version>
     <PackageIconUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/cool-icon.ico</PackageIconUrl>
     <PackageProjectUrl>http://rd-server:8080/tfs/microservicecollection/TestProject/_git/common.Normalization</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/MaiReo/cool-normalization/master/LICENSE</PackageLicenseUrl>
