@@ -17,14 +17,14 @@ namespace Cool.Normalization.Messages.Tests
     {
         public override void PreInitialize()
         {
-            //RegisterIfNot<Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager>();
-
             Configuration.UnitOfWork.IsTransactional = false; //EF Core InMemory DB does not support transactions.
+            Configuration.Modules.Normalization().IsMessageEnabled = true;
             SetupInMemoryDb();
         }
 
         public override void Initialize()
         {
+            Configuration.Modules.MessagePublisher().AutoStart = false;
             IocManager.RegisterAssemblyByConvention( typeof( MessageTestModule ).GetAssembly() );
         }
 
@@ -55,9 +55,9 @@ namespace Cool.Normalization.Messages.Tests
                     .For<DbContextOptions<TestDbContext>>()
                     .Instance( builder.Options )
                     .LifestyleSingleton()
-            );
+                );
             }
-            
+
         }
     }
 }

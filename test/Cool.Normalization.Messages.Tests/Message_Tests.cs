@@ -19,10 +19,10 @@ namespace Cool.Normalization.Messages.Tests
         [Fact]
         public void Resolver()
         {
-            var resolver = default( NullMessageResolver );
+            var resolver = default( IMessageResolver );
             try
             {
-                resolver = LocalIocManager.Resolve<NullMessageResolver>();
+                resolver = LocalIocManager.Resolve<IMessageResolver>();
                 var messages = resolver.HasHandlerMessages( LocalIocManager );
                 messages["TestCoolMessage"].ShouldBe( typeof( TestMessage ) );
                 messages.Count.ShouldBeGreaterThanOrEqualTo( 1 );
@@ -37,11 +37,11 @@ namespace Cool.Normalization.Messages.Tests
         [Fact]
         public void HandlerResolver()
         {
-            var resolver = default( NullMessageHandlerResolver );
+            var resolver = default( IMessageHandlerResolver );
             var handler = default( object );
             try
             {
-                resolver = LocalIocManager.Resolve<NullMessageHandlerResolver>();
+                resolver = LocalIocManager.Resolve<IMessageHandlerResolver>();
                 handler = resolver.Resolve( LocalIocManager, typeof( TestMessage ) );
                 handler.ShouldBeAssignableTo<IMessageHandler<TestMessage>>();
 
@@ -58,8 +58,8 @@ namespace Cool.Normalization.Messages.Tests
         [Fact]
         public async Task ExpressionBuilder()
         {
-            var resolver = LocalIocManager.Resolve<NullMessageHandlerResolver>();
-            var builder = LocalIocManager.Resolve<NullMessageHandlerCallExpressionBuilder>();
+            var resolver = LocalIocManager.Resolve<IMessageHandlerResolver>();
+            var builder = LocalIocManager.Resolve<IMessageHandlerCallExpressionBuilder>();
             var handler = default( object );
             var message = new TestMessage
             {
@@ -178,11 +178,11 @@ namespace Cool.Normalization.Messages.Tests
                 { topic, typeof(TestMessage) }
             };
             var wrapper = new MessageWrapper( topic, "{}", DateTimeOffset.UtcNow );
-            var invoker = default( NullMessageHandlerInvoker );
+            var invoker = default( IMessageHandlerInvoker );
             var oldCount = TestMessageHandler.Messages.Count;
             try
             {
-                invoker = LocalIocManager.Resolve<NullMessageHandlerInvoker>();
+                invoker = LocalIocManager.Resolve<IMessageHandlerInvoker>();
                 await invoker.InvokeAsync( messages, wrapper );
                 var newCount = TestMessageHandler.Messages.Count;
 
