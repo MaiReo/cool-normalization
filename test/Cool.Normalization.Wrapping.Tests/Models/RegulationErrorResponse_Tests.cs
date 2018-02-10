@@ -9,7 +9,7 @@ namespace Cool.Normalization.Tests
 {
     public class normalizationErrorResponse_Tests
     {
-        [Fact]
+        [Fact( DisplayName = "输出包装模块模型类构造函数测试" + nameof( NormalizationErrorResponse ) )]
         public void Property_Tests()
         {
             var requestId = "req";

@@ -19,7 +19,7 @@ namespace Cool.Normalization.Tests
         {
             _errorMessageGenerator = Resolve<IErrorMessageGenerator>();
         }
-        [Fact]
+        [Fact( DisplayName = "输出包装模块获取错误信息" )]
         public void GetErrorMessage_Excepion_Test()
         {
             var exception = new Exception( "errmsg" );
@@ -27,7 +27,7 @@ namespace Cool.Normalization.Tests
 
             errMsg.ShouldBe( exception.Message );
         }
-        [Fact]
+        [Fact( DisplayName = "输出包装模块获取参数验证错误信息" )]
         public void GetErrorMessage_AbpValidationException_Test()
         {
             var errors = new List<ValidationResult> { new ValidationResult( "45|validationError", new[] { "member1" } ) };

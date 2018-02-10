@@ -25,7 +25,7 @@ namespace Cool.Normalization.Tests
             _resultCodeGenerator = Resolve<IResultCodeGenerator>();
         }
 
-        [Fact]
+        [Fact( DisplayName = "输出包装模块生成Code在成功时" )]
         public void GetCode_Success_Test()
         {
 
@@ -39,7 +39,7 @@ namespace Cool.Normalization.Tests
             code.ShouldBe( "00556600" );
         }
 
-        [Fact]
+        [Fact( DisplayName = "输出包装模块生成Code在出错时" )]
         public void GetCode_Error_Test()
         {
             var httpRequest = new TestHttpRequest();
@@ -66,7 +66,7 @@ namespace Cool.Normalization.Tests
             code.ShouldBe( "77556647" );
         }
 
-        [Fact]
+        [Fact( DisplayName = "输出包装模块生成Code在带Code的异常时" )]
         public void GetCode_Error_normalizationException_Test()
         {
             var httpRequest = new TestHttpRequest();
@@ -93,7 +93,7 @@ namespace Cool.Normalization.Tests
             code.ShouldBe( "77556647" );
         }
 
-        [Fact]
+        [Fact( DisplayName = "输出包装模块生成Code在输入参数错误时" )]
         public void GetCode_Error_AbpValidationException_Test()
         {
             var httpRequest = new TestHttpRequest();

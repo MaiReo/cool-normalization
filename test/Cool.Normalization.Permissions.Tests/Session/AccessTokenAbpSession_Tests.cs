@@ -41,13 +41,13 @@ namespace Cool.Normalization.Permissions.Tests
             principalAccessor.Principal = new ClaimsPrincipal(identities);
         }
 
-        [Fact]
+        [Fact( DisplayName = "从Session获取账号Id" )]
         public void AccountId_Should_Be_1() => _session.AccountId.ShouldBe(int.Parse(ACCOUNT_ID_STRING));
 
-        [Fact]
+        [Fact( DisplayName = "从Session获取AbpUserId" )]
         public void AbpUserId_Should_Be_2() => _session.AbpUserId.ShouldBe(int.Parse(ABP_USER_ID_STRING));
 
-        [Fact]
+        [Fact( DisplayName = "从Session获取UserId" )]
         public void UserId_Should_Be_1() => _session.UserId.ShouldBe(int.Parse(ACCOUNT_ID_STRING));
     }
 }

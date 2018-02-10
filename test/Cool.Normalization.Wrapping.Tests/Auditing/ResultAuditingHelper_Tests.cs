@@ -15,7 +15,7 @@ namespace Cool.Normalization.Tests
             _resultAuditingHelper = Resolve<IResultAuditingHelper>();
         }
 
-        [Fact]
+        [Fact( DisplayName = "输出包装模块是否应该存储输出审计" )]
         public void ShouldSaveAudit_Test()
         {
             var methodInfo = new TestClass().TestMethod();
@@ -33,7 +33,7 @@ namespace Cool.Normalization.Tests
 
         }
 
-        [Fact]
+        [Fact( DisplayName = "输出包装模块存储输出审计" )]
         public void Save_Test()
         {
             var store = Resolve<MemoryListResultAuditingStore>();
@@ -45,7 +45,7 @@ namespace Cool.Normalization.Tests
             store.ResultAuditingStore.ShouldContain(response);
         }
 
-        [Fact]
+        [Fact( DisplayName = "输出包装模块异步存储输出审计" )]
         public async Task SaveAsync_Test()
         {
             var store = Resolve<MemoryListResultAuditingStore>();

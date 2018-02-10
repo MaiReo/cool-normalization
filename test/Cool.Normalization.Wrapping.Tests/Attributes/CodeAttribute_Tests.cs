@@ -9,14 +9,14 @@ namespace Cool.Normalization.Tests
 {
     public class CodeAttribute_Tests
     {
-        [Fact]
+        [Fact( DisplayName = "Code特性性定义在类" )]
         public void Attribute_On_Class_Test()
         {
             typeof( TestAttributeClass ).GetCustomAttributes( true ).OfType<ICodeAttribute>()
             .First().Code.ShouldBe( "01" );
         }
 
-        [Fact]
+        [Fact( DisplayName = "Code特性性定义在属性" )]
         public void Attribute_On_Property_Test()
         {
             typeof( TestAttributeClass )
@@ -25,7 +25,7 @@ namespace Cool.Normalization.Tests
                 .First().Code.ShouldBe( "02" );
         }
 
-        [Fact]
+        [Fact( DisplayName = "Code特性性定义在方法" )]
         public void Attribute_On_Method_Test()
         {
             typeof( TestAttributeClass )

@@ -69,9 +69,9 @@ namespace cool.permission.client.Api
         public ApiResponse<NormalizationResponse<object>> RegisterWithHttpInfo(RegisterInput input = null)
             => new ApiResponse<NormalizationResponse<object>>(200, new Dictionary<string, string>(), RegisterWithHttpInfo_Delegate.Invoke(input));
 
-        public Func<IsGrantInput, NormalizationResponse<IsGrantOutput>>  IsGrantWithHttpInfo_Delegate { protected get; set; }
+        public Func<IsGrantInput, NormalizationResponse<IsGrantOutput>>  IsGrantWithHttpInfo_Delegate { get; set; }
 
-        public Func<RegisterInput, NormalizationResponse<object>> RegisterWithHttpInfo_Delegate { protected get; set; }
+        public Func<RegisterInput, NormalizationResponse<object>> RegisterWithHttpInfo_Delegate { get; set; }
 
         
 

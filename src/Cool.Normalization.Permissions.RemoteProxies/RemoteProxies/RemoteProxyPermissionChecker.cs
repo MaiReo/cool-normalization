@@ -1,5 +1,5 @@
 ﻿#region Version=1.0.4
-/**
+/*
 * 与权限服务通信的鉴权实现类。
 * 
 * _permissionApi

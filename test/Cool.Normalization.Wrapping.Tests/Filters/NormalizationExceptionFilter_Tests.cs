@@ -13,7 +13,7 @@ namespace Cool.Normalization.Tests.Filters
 {
     public class NormalizationExceptionFilter_Tests : NormalizationTestBase
     {
-        [Fact]
+        [Fact( DisplayName = "输出包装模块WrapOnError为false时不包装异常" )]
         public void OnException_WrapOnError_False_Tests()
         {
             var normalizationExceptionFilter = Resolve<NormalizationExceptionFilter>();
@@ -44,7 +44,7 @@ namespace Cool.Normalization.Tests.Filters
             testFactory.CallCountOfCreateFor.ShouldBeLessThan( 1 );
         }
 
-        [Fact]
+        [Fact( DisplayName = "输出包装模块WrapOnError为true时包装异常" )]
         public void OnException_WrapOnError_True_Tests()
         {
             var normalizationExceptionFilter = Resolve<NormalizationExceptionFilter>();

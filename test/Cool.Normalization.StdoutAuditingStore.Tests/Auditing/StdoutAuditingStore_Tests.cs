@@ -25,7 +25,7 @@ namespace Cool.Normalization.Tests
                 = const_request_id;
         }
 
-        [Fact]
+        [Fact( DisplayName = "标准输出日志模块依赖注入")]
         public void DI_Test()
         {
             var auditingStore = Resolve<IAuditingStore>();
@@ -35,7 +35,7 @@ namespace Cool.Normalization.Tests
             resultAuditingStore.ShouldBeOfType<StdoutResultAuditingStore>();
         }
 
-        [Fact]
+        [Fact( DisplayName = "标准输出日志保存" )]
         public async Task SaveAsync_Test()
         {
             var auditingStore = Resolve<IAuditingStore>();
@@ -56,7 +56,7 @@ namespace Cool.Normalization.Tests
             message.Split("^").Length.ShouldBe(16);
         }
 
-        [Fact]
+        [Fact( DisplayName = "标准输出日志异步保存异常信息" )]
         public async Task SaveAsync_HasException_Test()
         {
             Exception exception = null;
@@ -89,7 +89,7 @@ namespace Cool.Normalization.Tests
 
         }
 
-        [Fact]
+        [Fact( DisplayName = "标准输出日志保存异常信息" )]
         public void Save_HasException_Test()
         {
             Exception exception = null;

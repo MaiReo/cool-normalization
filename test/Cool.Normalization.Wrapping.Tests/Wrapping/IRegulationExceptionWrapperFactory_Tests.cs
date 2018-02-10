@@ -22,7 +22,7 @@ namespace Cool.Normalization.Tests
             _exceptionFilter = Resolve<IExceptionFilter>();
         }
 
-        [Fact]
+        [Fact( DisplayName = "输出包装模块异常包装工厂生成异常包装者" )]
         public void Should_Return_ExceptionResultWrapper()
         {
             var errorContext = CreateContext();
@@ -31,7 +31,7 @@ namespace Cool.Normalization.Tests
             wrapper.ShouldBeOfType<NormalizationExceptionWrapper>();
         }
 
-        [Fact]
+        [Fact( DisplayName = "输出包装模块异常包装工厂依赖注入检测" )]
         public void IExceptionFilter_ShouldBe_NormalizationExceptionFilter()
         {
             _exceptionFilter.ShouldBeOfType<NormalizationExceptionFilter>();

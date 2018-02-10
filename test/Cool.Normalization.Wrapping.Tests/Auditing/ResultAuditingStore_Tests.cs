@@ -14,7 +14,7 @@ namespace Cool.Normalization.Tests
             _resultAuditingStore = Resolve<IResultAuditingStore>();
         }
 
-        [Fact]
+        [Fact( DisplayName = "输出包装模块审计存储保存" )]
         public void Save_Test()
         {
             var response = new NormalizationResponse( "003", "00145534" );
@@ -22,7 +22,7 @@ namespace Cool.Normalization.Tests
             ((MemoryListResultAuditingStore)_resultAuditingStore).ResultAuditingStore.ShouldContain( response );
         }
 
-        [Fact]
+        [Fact( DisplayName = "输出包装模块审计存储异步保存" )]
         public async Task SaveAsync_Test()
         {
             var response = new NormalizationResponse( "003", "00145534" );

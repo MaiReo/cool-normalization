@@ -8,7 +8,7 @@
 * RemoteProxyPermissionRegister(IPermissionApi)
 * 构造函数。依赖一个与权限服务通信的通信的对象并保存到成员_permissionApi。
 *
-* Register(string, string, IEnumerable<CoolPermission>)
+* Register(string, string, IEnumerable{CoolPermission})
 * 注册权限定义。详见IPermissionRegister接口
 * 将参数传递给权限服务等待处理结果。
 * 权限注册成功时不引发异常。
@@ -21,7 +21,7 @@
 * 可能引发的异常：
 *   System.NullReferenceException
 * 
-* List<PermissionDto> MapToDto(IEnumerable<CoolPermission>
+* List{PermissionDto} MapToDto(IEnumerable{CoolPermission})
 * 将注册权限定义的参数转换为权限服务所需参数的方法。
 * 将每一个权限按照名字中包含的“.”的数量作为参数“Level”的值。
 * 可能引发的异常：

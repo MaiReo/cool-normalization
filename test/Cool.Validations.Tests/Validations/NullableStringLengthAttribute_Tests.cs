@@ -6,7 +6,7 @@ namespace Cool.Validations.Tests
 {
     public class NullableStringLengthAttribute_Tests
     {
-        [Fact]
+        [Fact( DisplayName = "自定义入参验证模块可空字符串长度验证" )]
         public void IsValid_Test()
         {
             var attr = new NullableStringLengthAttribute( 5 )

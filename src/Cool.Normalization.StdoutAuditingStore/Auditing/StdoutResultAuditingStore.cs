@@ -104,7 +104,7 @@ namespace Cool.Normalization
             this._stdoutAuditStoreconfiguration = stdoutAuditStoreconfiguration;
         }
         /// <summary>
-        /// 见 <see cref=“IResultAuditingStore.Save(NormalizationResponseBase)”/>
+        /// 见 <see cref="IResultAuditingStore.Save(NormalizationResponseBase)"/>
         /// </summary>
         public void Save(NormalizationResponseBase normalizationResponse)
         {
@@ -130,7 +130,7 @@ namespace Cool.Normalization
             stringBuilder.Clear();
         }
         /// <summary>
-        /// A Task-based Calling of <see cref=“Save(NormalizationResponseBase)”/>
+        /// A Task-based Calling of <see cref="Save(NormalizationResponseBase)"/>
         /// </summary>
         /// <exception cref="TaskCanceledException"/>
         /// <exception cref="System.OperationCanceledException"/>

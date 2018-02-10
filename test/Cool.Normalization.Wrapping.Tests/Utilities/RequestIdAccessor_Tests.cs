@@ -24,7 +24,7 @@ namespace Cool.Normalization.Tests
             this._normalizationConfiguration = Resolve<INormalizationConfiguration>();
         }
 
-        [Fact]
+        [Fact( DisplayName = "输出包装模块直接获取请求Id" )]
         public void RequestId_Test()
         {
             const string const_request_id = "a request id";
@@ -34,7 +34,7 @@ namespace Cool.Normalization.Tests
             TestHttpContext.Current.Request.Headers.Remove( _normalizationConfiguration.RequestIdHeaderName );
         }
 
-        [Fact]
+        [Fact( DisplayName = "输出包装模块从异常获取请求Id" )]
         public void GetRequestId_Exception_Test()
         {
             const string const_request_id = "it is a request id";
@@ -61,7 +61,7 @@ namespace Cool.Normalization.Tests
             requestId.ShouldBe( const_request_id );
         }
 
-        [Fact]
+        [Fact( DisplayName = "输出包装模块从结果获取请求Id" )]
         public void GetRequestId_Success_Test()
         {
             const string const_request_id = "it is not a true request id";

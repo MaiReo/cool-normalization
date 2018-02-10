@@ -16,7 +16,7 @@ namespace Cool.Normalization.Messages.Tests
 {
     public class Message_Tests : MessageTestBase
     {
-        [Fact]
+        [Fact( DisplayName = "发现所有消息" )]
         public void Resolver()
         {
             var resolver = default( IMessageResolver );
@@ -34,7 +34,7 @@ namespace Cool.Normalization.Messages.Tests
             }
         }
 
-        [Fact]
+        [Fact( DisplayName = "发现所有消息处理者" )]
         public void HandlerResolver()
         {
             var resolver = default( IMessageHandlerResolver );
@@ -55,7 +55,7 @@ namespace Cool.Normalization.Messages.Tests
             }
         }
 
-        [Fact]
+        [Fact( DisplayName = "构建消息处理者调用表达式" )]
         public async Task ExpressionBuilder()
         {
             var resolver = LocalIocManager.Resolve<IMessageHandlerResolver>();
@@ -104,7 +104,7 @@ namespace Cool.Normalization.Messages.Tests
                     LocalIocManager.Release( handler );
             }
         }
-        [Fact]
+        [Fact( DisplayName = "格式化消息日志" )]
         public void LoggerFormat()
         {
             var message = new TestMessage
@@ -137,7 +137,7 @@ namespace Cool.Normalization.Messages.Tests
             }
         }
 
-        [Fact]
+        [Fact( DisplayName = "绑定消息处理者到消息接收事件" )]
         public async Task Binder()
         {
             IMessageConfiguration config = new TestMessageConfiguration();
@@ -169,7 +169,7 @@ namespace Cool.Normalization.Messages.Tests
             }
         }
 
-        [Fact]
+        [Fact( DisplayName = "消息处理者调用者" )]
         public async Task Invoker()
         {
             var topic = typeof( TestMessage ).GetCustomAttribute<MessageTopicAttribute>().TopicName;
@@ -194,7 +194,7 @@ namespace Cool.Normalization.Messages.Tests
                     LocalIocManager.Release( invoker );
             }
         }
-        [Fact]
+        [Fact( DisplayName = "解释消息处理结果为正常的Code值" )]
         public void ResolveSuccessCode()
         {
             var codeResolver = default( IMessageHandlerCodeResolver );
@@ -213,7 +213,7 @@ namespace Cool.Normalization.Messages.Tests
             }
         }
 
-        [Fact]
+        [Fact( DisplayName = "解释消息处理结果为正常的Code值在Castle代理下" )]
         public void ResolveSuccessCodeUnderlyingCastleProxy()
         {
             var codeResolver = default( IMessageHandlerCodeResolver );
@@ -236,7 +236,7 @@ namespace Cool.Normalization.Messages.Tests
             }
         }
 
-        [Fact]
+        [Fact( DisplayName = "解释消息处理结果为错误的Code值" )]
         public void ResolveErrorCode()
         {
             var codeResolver = default( IMessageHandlerCodeResolver );
@@ -256,7 +256,7 @@ namespace Cool.Normalization.Messages.Tests
             }
         }
 
-        [Fact]
+        [Fact( DisplayName = "消息处理者依赖仓储" )]
         public async Task WithRepository()
         {
             IMessageConfiguration config = new TestMessageConfiguration();
@@ -294,7 +294,7 @@ namespace Cool.Normalization.Messages.Tests
             }
         }
 
-        [Fact]
+        [Fact( DisplayName = "消息处理者依赖Uow" )]
         public async Task WithUoW()
         {
             IMessageConfiguration config = new TestMessageConfiguration();
@@ -332,7 +332,7 @@ namespace Cool.Normalization.Messages.Tests
             }
         }
 
-        [Fact]
+        [Fact( DisplayName = "消息处理者不依赖Uow" )]
         public async Task WithoutUoW()
         {
             IMessageConfiguration config = new TestMessageConfiguration();

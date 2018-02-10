@@ -20,7 +20,7 @@ namespace Cool.Normalization.Permissions.Tests
         }
         public const long ACCOUNT_ID = 1L;
 
-        [Fact]
+        [Fact( DisplayName = "验证权限" )]
         public async Task IsGrantAsync_Test()
         {
             _proxyPermissionChecker.ShouldBeOfType<ProxyPermissionChecker>();

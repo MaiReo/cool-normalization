@@ -19,7 +19,7 @@ namespace Cool.Normalization.Permissions.Tests
             ResolveSelf(ref _permissionManager);
         }
 
-        [Fact]
+        [Fact( DisplayName = "×¢²áÈ¨ÏÞ" )]
         public void Register_Test()
         {
             _permissionManager.Register();

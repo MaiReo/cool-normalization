@@ -21,7 +21,7 @@ namespace Cool.Normalization.Tests
             _abpActionResultWrapperFactory = Resolve<IAbpActionResultWrapperFactory>();
         }
 
-        [Fact]
+        [Fact( DisplayName = "输出包装模块包装工厂生成Object包装者" )]
         public void Should_Return_ObjectResultWrapper()
         {
             var value = new
@@ -35,7 +35,7 @@ namespace Cool.Normalization.Tests
             wrapper.ShouldBeOfType<NormalizationObjectActionResultWrapper>();
         }
 
-        [Fact]
+        [Fact( DisplayName = "输出包装模块包装工厂生成Json包装者" )]
         public void Should_Return_JsonResultWrapper()
         {
             var value = new
@@ -49,7 +49,7 @@ namespace Cool.Normalization.Tests
             wrapper.ShouldBeOfType<NormalizationJsonActionResultWrapper>();
         }
 
-        [Fact]
+        [Fact( DisplayName = "输出包装模块包装工厂生成空包装者" )]
         public void Should_Return_EmptyResultWrapper()
         {
 
