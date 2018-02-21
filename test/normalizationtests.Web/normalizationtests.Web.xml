@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>normalizationtests.Web</name>
+    </assembly>
+    <members>
+        <member name="T:normalizationtests.Web.WebContentDirectoryFinder">
+            <summary>
+            This class is used to find root path of the web project in;
+            unit tests (to find views) and entity framework core command line commands (to find conn string).
+            </summary>
+        </member>
+        <member name="M:normalizationtests.Application.AccountAppService.ChangePassword(normalizationtests.Application.ChangePasswordInput)">
+            <summary>
+            更改密码
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="P:normalizationtests.Application.ChangePasswordInput.Id">
+            <summary>
+            艾迪
+            </summary>
+        </member>
+        <member name="P:normalizationtests.Application.ChangePasswordInput.Password">
+            <summary>
+            帕斯伍德
+            </summary>
+        </member>
+        <member name="T:normalizationtests.normalizationtestsAppServiceBase">
+            <summary>
+            Derive your application services from this class.
+            </summary>
+        </member>
+    </members>
+</doc>

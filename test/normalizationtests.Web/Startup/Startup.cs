@@ -25,7 +25,8 @@ namespace normalizationtests.Web.Startup
 
             services.AddMvc();
 
-            services.AddNormalization( "Cool Normalization Tests", addAuth: true );
+            services.AddNormalization( "Cool Normalization Tests", 
+                addAuth: true,swaggerDocs: new[] { "normalizationtests.Web.xml" } );
 
             //Configure Abp and Dependency Injection
             return services.AddAbp<normalizationtestsWebModule>( options =>

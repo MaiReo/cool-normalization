@@ -32,6 +32,11 @@ namespace normalizationtests.Application
     [Code( "03" )]
     public class AccountAppService : normalizationtestsAppServiceBase, IApplicationService
     {
+        /// <summary>
+        /// 更改密码
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
 
         [Code( "03" )]
         public Task ChangePassword(ChangePasswordInput input)
@@ -57,11 +62,16 @@ namespace normalizationtests.Application
 
     public class ChangePasswordInput
     {
+        /// <summary>
+        /// 艾迪
+        /// </summary>
         [Code( "01" )]
         [Display( Name = "艾迪" )]
         [Required( ErrorMessage = "请填写此字段:{0}" )]
         public long Id { get; set; }
-
+        /// <summary>
+        /// 帕斯伍德
+        /// </summary>
         [Code( "02" )]
         [Display( Name = "帕斯伍德" )]
         [Required( ErrorMessage = "请填写此字段:{0}" )]
