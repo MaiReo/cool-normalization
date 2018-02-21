@@ -23,13 +23,15 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="addWrapping">添加输出包装(默认)</param>
         /// <param name="addSwagger">添加Swagger文档(默认)</param>
         /// <param name="addAuth">添加身份验证(不添加)</param>
+        /// <param name="swaggerDocs">为swagger添加xml文档</param>
         /// <returns></returns>
         public static IServiceCollection AddNormalization(
             this IServiceCollection services,
             string friendlyName = default,
             bool? addWrapping = default,
             bool? addSwagger = default,
-            bool? addAuth = default)
+            bool? addAuth = default,
+            IEnumerable<string> swaggerDocs = default)
         {
             if (string.IsNullOrWhiteSpace( friendlyName ))
             {
@@ -47,8 +49,8 @@ namespace Microsoft.Extensions.DependencyInjection
             {
                 services.AddAuth();
             }
-            services.AddSwaggerEtc( friendlyName, addAuth == true );
-            return services;
+            return services.AddSwaggerEtc( 
+                friendlyName, addAuth == true, swaggerDocs );
         }
     }
 }

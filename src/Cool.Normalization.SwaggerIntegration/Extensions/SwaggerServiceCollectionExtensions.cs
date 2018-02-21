@@ -10,21 +10,31 @@ using Cool.Nomalization;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static class SwaggerServiceCollectionExtensions
     {
+        /// <summary>
+        /// 添加Swagger
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="friendlyName">友好名称</param>
+        /// <param name="hasAuth">是否存在Bearer验证</param>
+        /// <param name="xmlComments">附加的xml文档</param>
+        /// <returns></returns>
         public static IServiceCollection AddSwaggerEtc(this IServiceCollection services,
-            string uniqueName,
-            bool hasAuth = false)
+            string friendlyName,
+            bool hasAuth = false,
+            IEnumerable<string> xmlComments = default)
         {
-            if (string.IsNullOrWhiteSpace( uniqueName ))
-                throw new ArgumentNullException( nameof( uniqueName ) );
+            if (string.IsNullOrWhiteSpace( friendlyName ))
+                throw new ArgumentNullException( nameof( friendlyName ) );
             services.AddSwaggerGen( options =>
             {
-                options.SwaggerDoc( "v1", new Info { Title = uniqueName + " API", Version = "v1" } );
+                options.SwaggerDoc( "v1", new Info { Title = friendlyName + " API", Version = "v1" } );
                 options.DocInclusionPredicate( (docName, description) => true );
                 if (hasAuth)
                 {
@@ -38,6 +48,14 @@ namespace Microsoft.Extensions.DependencyInjection
                     } );
                 }
                 options.OperationFilter<RemovePreFixOperationFilter>();
+                if (xmlComments == default( IEnumerable<string> )) return;
+                foreach (var path in xmlComments)
+                {
+                    if (File.Exists( path ))
+                    {
+                        options.IncludeXmlComments( path );
+                    }
+                }
             } );
             return services;
         }
